@@ -21,6 +21,7 @@
     \*-----------------*/
     
     else if (domain === 'instagram.com') {
+        // Remove popups prompting user to login, when it's not actually necessary.
         document.addEventListener('DOMContentLoaded', () => {
             document.body.addEventListener('click', (e) => {
                 const link = e.target.closest('a');
