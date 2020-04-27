@@ -66,6 +66,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! *-----------------------------------* !
 
 foxnews.com##.item-newsletter
+ibtimes.com##.videocontent-wrapper.stickyPlayer
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 ||ibt-mail.com/site2/ibt?u=B&webforms_id=12&v=0$subdocument
 ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
