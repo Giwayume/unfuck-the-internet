@@ -8,6 +8,8 @@ This is just my personal Ublock Origin filter list to remove annoying things tha
 5. I don't like advertisements
 6. I don't like sites that beg to disable adblocker
 
+## 1. Adblocker Filter List
+
 ### Firefox Mobile
 
 1. Install [Ublock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/?src=search) (or equivalent) from the [Firefox Add-Ons website](https://addons.mozilla.org/).
@@ -19,3 +21,15 @@ This is just my personal Ublock Origin filter list to remove annoying things tha
 1. [Download and install the browser from the app store](https://play.google.com/store/apps/details?id=org.adblockplus.browser)
 2. Open the browser. Go to Settings -> Ad blocking -> More blocking options -> Add other filter list
 3. Type in or copy/paste this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt
+
+## 2. User Script
+
+### Chrome
+
+1. Install a userscript extension like [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag?hl=en)
+2. Add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
+
+### Firefox (Desktop and Mobile)
+
+1. Install a userscript extension like [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
+2. Add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
