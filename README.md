@@ -10,6 +10,8 @@ This is just my personal Ublock Origin filter list to remove annoying things tha
 
 ## 1. Adblocker Filter List
 
+Installing the filter list will solve most problems, but don't forget to also install the user script below!
+
 ### Chrome
 
 1. Install [Ublock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en) (or equivalent).
