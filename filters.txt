@@ -30,7 +30,7 @@ diamondbank.com/wp-content/plugins/popup-maker/assets/css/
 foursquare.com##.getTheAppPrompt,#mobileDownload>#contents>#container>#download,#mobileDownload>#contents>#container>#alsoOn
 foxnews.com##a[href*="AppArticleLink"]
 gtbank.com###smartbanner
-imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.AppBanner,.getTheApp
+imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.AppBanner,.getTheApp,.get-app-block
 key.com###smartbanner
 key.com/kco/css/jquery.smartbanner.css
 mangafox.me##.sidetip
