@@ -67,6 +67,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 
 foxnews.com##.item-newsletter
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
+instagram.com##.tHaIX
 ||ibt-mail.com/site2/ibt?u=B&webforms_id=12&v=0$subdocument
 ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
 kissanime.ac###upgrade_pop
@@ -88,13 +89,14 @@ msn.com##.xnetvidplayer.playershrunk
 ! | Adblock Section | !
 ! *-----------------* !
 
-facebook.com###pagelet_marketplace_recently_viewed_rhc > ._1-ia > ._4-u8._20os._2tyk._1-ib._4-u2
+facebook.com###pagelet_marketplace_recently_viewed_rhc
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
+vidlii.com##.abb_parent
 
 ! *-----------------------* !
 ! | UK Cookie Law Section | !
