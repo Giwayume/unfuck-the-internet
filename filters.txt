@@ -117,3 +117,9 @@ windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 youtube.com##.iv-click-target.branding-img
 youtube.com##.branding-img-container,.ytp-paid-content-overlay
 youtube.com###main.ytd-mealbar-promo-renderer
+
+! *--------------------* !
+! | Auto-notifications | !
+! *--------------------* !
+
+facebook.com##a[href*="/watch/"] .gky8063y
