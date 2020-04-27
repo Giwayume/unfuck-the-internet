@@ -22,7 +22,7 @@
     
     else if (domain === 'instagram.com') {
         document.addEventListener('DOMContentLoaded', () => {
-            document.body.addEventListener('mousedown', (e) => {
+            document.body.addEventListener('click', (e) => {
                 const link = e.target.closest('a');
                 if (link && link.hasAttribute('href') && link.getAttribute('href').startsWith('/p/')) {
                     e.preventDefault();
