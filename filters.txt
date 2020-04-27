@@ -1,0 +1,91 @@
+[Adblock Plus 2.0]
+! Title: Unfuck the Internet
+! Author: Giwayume
+! Version: 1.0
+! Expires: 1 days
+! License: GNU GENERAL PUBLIC LICENSE VER 3
+! Homepage: https://github.com/Giwayume/unfuck-the-internet/
+! WritingRules: https://adblockplus.org/filters
+! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
+! RegExpVisualizer http://www.regexper.com/
+
+! *----------------------------------* !
+! | Mobile App Interstitials Section | !
+! *----------------------------------* !
+
+accuweather.com###app-store-links
+alibaba.com##ai-download-app-zyl,a[href*="apps.do"]
+aliexpress.com###ms-downloadbar-wrap
+amazon.com##.smart-app-banner
+amazon.co.uk##.smart-app-banner
+amazon.de##.smart-app-banner
+amazon.in##.smart-app-banner
+animefreak.tv###googleModal,a[href*="animemobile.com"]
+bpiexpressonline.com###smartbanner
+booking.com##.appacq-banner-rating-wrap
+bulumanga.com##.foot-download,.foot-download+.footer
+dailymail.co.uk###smartBanner
+damnlol.com##.overlay.facebook-page
+deviantart.com###smartbanner.android
+diamondbank.com/wp-content/plugins/popup-maker/assets/css/
+foursquare.com##.getTheAppPrompt,#mobileDownload>#contents>#container>#download,#mobileDownload>#contents>#container>#alsoOn
+gtbank.com###smartbanner
+imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.AppBanner,.getTheApp
+key.com###smartbanner
+key.com/kco/css/jquery.smartbanner.css
+
+mangafox.me##.sidetip
+mangareader.net###googleModal
+mcdonalds.com###smartbanner
+mobile.illinoislottery.com/etc/designs/northstarmobile/appclientlibs/js/mobilepopup.js
+ok.ru##.promo-blck.js-adv
+pinterest.com##.AppUpsellHeader__background
+pixnet.net##.smartbanner.smartbanner_android
+reddit.com##.DualPartInterstitial
+seeclickfix.com##.row.app-icons
+soundcloud.com##.upsellBanner,.upsellBanner__app,.footer__appButtonContainer
+stackexchange.com##.app-banner
+stackoverflow.com##.app-banner
+standardbank.co.za##.smartbanner
+statefarm.com##.app-banner
+taobao.com##.app-download
+tianya.cn##.app-tips
+ticketmaster.com##.md-eventhead.androidapp
+tmall.com##.app-download-popup
+twitch.tv##.mobile-header--toolbar>.button--upsell
+uol.com.br###smart-banner
+walmart.com##.AppBanner
+zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
+
+! *---------------------------* !
+! | Annoying Overlays Section | !
+! *---------------------------* !
+
+ibtimes.com##.wf2-bg-light.grwf2_backdrop
+||ibt-mail.com/site2/ibt?u=B&webforms_id=12&v=0$subdocument
+ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
+kissanime.ac###upgrade_pop
+mangahere.cc##.reader-win-last
+nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl,.css-mcm29f:style(overflow: auto !important;)
+
+! *-----------------* !
+! | Adblock Section | !
+! *-----------------* !
+
+facebook.com###pagelet_marketplace_recently_viewed_rhc > ._1-ia > ._4-u8._20os._2tyk._1-ib._4-u2
+jsfiddle.net###keep-us-running
+news.google.com##.misTTe.Mp2Z0b.Mh0NNb
+readjojolion.com##.pages__ad
+
+! *-----------------------* !
+! | UK Cookie Law Section | !
+! *-----------------------* !
+
+capitalxtra.com##.ConsentPanel--v2.ConsentPanel
+moduscreate.com###cookie-law-info-bar
+
+! *------------------------------------* !
+! | Unnecessary Video Overlays Section | !
+! *------------------------------------* !
+
+youtube.com##.branding-img-container
