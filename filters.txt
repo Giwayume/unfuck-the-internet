@@ -81,7 +81,7 @@ jsfiddle.net###keep-us-running
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
-theguardian.com##.contributions__adblock
+theguardian.com##.contributions__adblock,.contributions__highlight
 
 ! *-----------------------* !
 ! | UK Cookie Law Section | !
