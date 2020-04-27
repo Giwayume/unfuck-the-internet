@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1
+// @version      1.0.1
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -12,18 +12,33 @@
 (function() {
     
     const domain = window.location.hostname.split('.').slice(-2).join('.');
-    
+    console.log(domain);
+  
+    if (false) {}
+  
     /*-----------------*\
     | | instagram.com | |
     \*-----------------*/
     
     else if (domain === 'instagram.com') {
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('react-root').addEventListener('mousedown', (e) => {
-                if (e.target && e.target.hasAttribute('href') && e.target.getAttribute('href').startsWith('/p/')) {
+            console.log();
+            document.body.addEventListener('mousedown', (e) => {
+                const link = e.target.closest('a');
+                if (link && link.hasAttribute('href') && link.getAttribute('href').startsWith('/p/')) {
                     e.preventDefault();
                     e.stopPropagation();
-                    window.location.href = e.target.getAttribute('href');
+                    window.location.href = link.getAttribute('href');
+                    const popupCheck = setInterval(() => {
+                        const popup = document.querySelector('.RnEpo');
+                        if (popup) {
+                            setTimeout(() => {
+                              document.body.style.overflow = 'auto';
+                            }, 50);
+                            popup.remove();
+                            clearInterval(popupCheck);
+                        }
+                    }, 1);
                 }
             });
         });
