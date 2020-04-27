@@ -41,8 +41,9 @@ ok.ru##.promo-blck.js-adv
 pinterest.com##.AppUpsellHeader__background
 pixnet.net##.smartbanner.smartbanner_android
 reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial
-reddit.com##.TopNav__promoButton,.XPromoPopup,
-reddit.com##a[class*="Promo"],.xPromoAppStoreFooter
+reddit.com##.TopNav__promoButton
+reddit.com##.XPromoPopup,.xPromoAppStoreFooter
+reddit.com##a[class*="Promo"],
 reddit.com##body:style(overflow: auto !important)
 reddit.com##.PostContent__image-link:style(background-size: contain !important)
 seeclickfix.com##.row.app-icons
