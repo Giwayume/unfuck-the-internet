@@ -66,15 +66,23 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! *-----------------------------------* !
 
 foxnews.com##.item-newsletter
-ibtimes.com##.videocontent-wrapper.stickyPlayer
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 ||ibt-mail.com/site2/ibt?u=B&webforms_id=12&v=0$subdocument
 ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
 kissanime.ac###upgrade_pop
+latimes.com###reg-overlay
 mangahere.cc##.reader-win-last
-msn.com##.xnetvidplayer.playershrunk
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
+thehill.com##.preloaded_lightbox
+
+! *-----------------------* !
+! | Sticky Videos Section | !
+! *-----------------------* !
+
+digitaltrends.com##.m-sticky-video.is-stuck
+ibtimes.com##.videocontent-wrapper.stickyPlayer
+msn.com##.xnetvidplayer.playershrunk
 
 ! *-----------------* !
 ! | Adblock Section | !
@@ -82,6 +90,7 @@ nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 
 facebook.com###pagelet_marketplace_recently_viewed_rhc > ._1-ia > ._4-u8._20os._2tyk._1-ib._4-u2
 jsfiddle.net###keep-us-running
+kissasian.*##+js(setTimeout-defuser.js, leHzI)
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
@@ -92,10 +101,16 @@ theguardian.com##.contributions__adblock,.contributions__epic,.contributions__hi
 ! *-----------------------* !
 
 capitalxtra.com##.ConsentPanel--v2.ConsentPanel
+dicebreaker.com###optanon-popup-bg,.optanon-alert-box-wrapper
+forum.yoyogames.com###cookie
 moduscreate.com###cookie-law-info-bar
+vg247.com###optanon,.optanon-alert-box-wrapper
+windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 
 ! *------------------------------------* !
 ! | Unnecessary Video Overlays Section | !
 ! *------------------------------------* !
 
-youtube.com##.branding-img-container
+youtube.com##.iv-click-target.branding-img
+youtube.com##.branding-img-container,.ytp-paid-content-overlay
+youtube.com###main.ytd-mealbar-promo-renderer
