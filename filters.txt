@@ -41,7 +41,9 @@ mobile.illinoislottery.com/etc/designs/northstarmobile/appclientlibs/js/mobilepo
 ok.ru##.promo-blck.js-adv
 pinterest.com##.AppUpsellHeader__background
 pixnet.net##.smartbanner.smartbanner_android
-reddit.com##.DualPartInterstitial
+reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial,.TopNav-promoButton,.XPromoPopup,a[class*="Promo"],.xPromoAppStoreFooter
+reddit.com##body:style(overflow: auto !important)
+reddit.com##.PostContent__image-link:style(background-size: contain !important)
 seeclickfix.com##.row.app-icons
 soundcloud.com##.upsellBanner,.upsellBanner__app,.footer__appButtonContainer
 stackexchange.com##.app-banner
@@ -75,6 +77,7 @@ nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 
 facebook.com###pagelet_marketplace_recently_viewed_rhc > ._1-ia > ._4-u8._20os._2tyk._1-ib._4-u2
 jsfiddle.net###keep-us-running
+mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
 
