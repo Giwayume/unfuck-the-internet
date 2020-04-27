@@ -1,4 +1,4 @@
-# Unfuck the internet
+# Unfuck the Internet
 This is just my personal list to remove annoying things that get past other adblock filters.
 
 1. I don't like mobile websites bugging me to install their mobile app
