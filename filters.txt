@@ -66,7 +66,8 @@ ibtimes.com##.wf2-bg-light.grwf2_backdrop
 ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
 kissanime.ac###upgrade_pop
 mangahere.cc##.reader-win-last
-nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl,.css-mcm29f:style(overflow: auto !important;)
+nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
+nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 
 ! *-----------------* !
 ! | Adblock Section | !
