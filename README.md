@@ -1,10 +1,11 @@
 # Unfuck the internet
 This is just my personal list to remove annoying things that get past other adblock filters.
 
-1. I don't like "subscribe to my email list" and other similar popups
-2. I don't like "this site uses cookies" notifications
-3. I don't like advertisements
-4. I don't like sites that beg to disable adblocker
+1. I don't like mobile websites bugging me to install their mobile app
+2. I don't like "subscribe to my email list" and other similar popups
+3. I don't like "this site uses cookies" notifications
+4. I don't like advertisements
+5. I don't like sites that beg to disable adblocker
 
 ### Firefox Mobile
 
