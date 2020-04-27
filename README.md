@@ -10,11 +10,15 @@ This is just my personal Ublock Origin filter list to remove annoying things tha
 
 ## 1. Adblocker Filter List
 
-### Firefox Mobile
+### Chrome
+
+1. Install [Ublock Origin](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en) (or equivalent).
+2. [Subscribe to the filter list](https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt) at https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt
+
+### Firefox (Desktop and Mobile)
 
 1. Install [Ublock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/?src=search) (or equivalent) from the [Firefox Add-Ons website](https://addons.mozilla.org/).
-2. [Subscribe to the filter list](https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt).
-3. Enjoy!
+2. [Subscribe to the filter list](https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt) at https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/filters.txt
 
 ### Adblock Browser (Android)
 
