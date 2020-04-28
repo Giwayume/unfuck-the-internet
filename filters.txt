@@ -65,6 +65,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! | Annoying Overlays/Content Section | !
 ! *-----------------------------------* !
 
+dailywire.com##.ub-emb-container
 foxnews.com##.item-newsletter
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 instagram.com##.tHaIX
