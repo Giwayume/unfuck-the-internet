@@ -115,6 +115,7 @@ windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 ! | Unnecessary Video Overlays Section | !
 ! *------------------------------------* !
 
+youtube.com##ytd-mealbar-promo-renderer
 youtube.com##.iv-click-target.branding-img
 youtube.com##.branding-img-container,.ytp-paid-content-overlay
 youtube.com###main.ytd-mealbar-promo-renderer
