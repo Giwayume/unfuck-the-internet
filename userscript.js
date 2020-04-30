@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.1
+// @version      1.0.2
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -12,7 +12,73 @@
 (function() {
     
     const domain = window.location.hostname.split('.').slice(-2).join('.');
+    
+    const waitFor = (conditionCheck, timeout) => {
+        return new Promise((resolve, reject) => {
+            const checkInterval = setInterval(() => {
+                if (conditionCheck()) {
+                    clearInterval(checkInterval);
+                    resolve();
+                }
+            }, 10);
+            setTimeout(() => {
+                clearInterval(checkInterval);
+                resolve();
+            }, timeout || 5000);
+        });
+    };
+    
     if (false) {}
+    
+    /*----------------*\
+    | | facebook.com | |
+    \*----------------*/
+  
+    else if (domain === 'facebook.com') {
+        // Remove sponsored feed items.
+        const purgeFeedUnit = async (node) => {
+            if (!node.getAttribute('data-pagelet').startsWith('FeedUnit')) {
+                return;
+            }
+            let busyNode;
+            await waitFor(() => {
+                busyNode = node.querySelector('[aria-busy="true"]');
+                return !!busyNode;
+            }, 100);
+            await waitFor(() => {
+                return !busyNode || busyNode.parentNode === null;
+            }, Infinity);
+            if (/S[a-zA-Z]*?p[a-zA-Z]*?o[a-zA-Z]*?n[a-zA-Z]*?s[a-zA-Z]*?o[a-zA-Z]*?r/.test(node.textContent || '')) {
+                node.querySelectorAll('[style*="position: absolute"][style *="top: 3em"]').forEach((node) => node.remove());
+                if (/S[a-zA-Z]*?p[a-zA-Z]*?o[a-zA-Z]*?n[a-zA-Z]*?s[a-zA-Z]*?o[a-zA-Z]*?r/.test(node.textContent || '')) {
+                    console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
+                    node.style.display = 'none';
+                }
+            }
+        };
+        document.addEventListener('DOMContentLoaded', async () => {
+            let feeds;
+            await waitFor(() => {
+                feeds = document.querySelectorAll('[role="feed"]');
+                return feeds.length > 0;
+            });
+            if (feeds) {
+                feeds.forEach((feed) => {
+                    const observer = new MutationObserver((mutations) => {
+                        mutations.forEach(function(mutation) {
+                            for (var i = 0; i < mutation.addedNodes.length; i++) {
+                                purgeFeedUnit(mutation.addedNodes[i]);
+                            }
+                        });
+                    })
+                    observer.observe(feed, { childList: true });
+                    feed.querySelectorAll('[data-pagelet^="FeedUnit"]').forEach(async (node) => {
+                        purgeFeedUnit(node);
+                    });
+                });
+            }
+        });
+    }
   
     /*-----------------*\
     | | instagram.com | |
