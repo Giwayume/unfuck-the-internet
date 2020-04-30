@@ -108,6 +108,7 @@ capitalxtra.com##.ConsentPanel--v2.ConsentPanel
 dicebreaker.com###optanon-popup-bg,.optanon-alert-box-wrapper
 forum.yoyogames.com###cookie
 moduscreate.com###cookie-law-info-bar
+npmjs.com###hs-eu-cookie-confirmation
 vg247.com###optanon,.optanon-alert-box-wrapper
 windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 
