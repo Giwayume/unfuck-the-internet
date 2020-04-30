@@ -1,5 +1,5 @@
 # Unfuck the Internet
-This is just my personal Ublock Origin filter list to remove annoying things that get past other adblock filters.
+This is my personal Ublock Origin filter list to remove annoying things that get past other adblock filters.
 
 1. I don't like mobile websites bugging me to install their mobile app
 2. I don't like videos in news sites that pop out and stick to the screen
