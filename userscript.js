@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.2
+// @version      1.0.3
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -37,7 +37,8 @@
     else if (domain === 'facebook.com') {
         // Remove sponsored feed items.
         const purgeFeedUnit = async (node) => {
-            if (!node.getAttribute('data-pagelet').startsWith('FeedUnit')) {
+            var pageletAttr = node.getAttribute('data-pagelet');
+            if (!pageletAttr || !pageletAttr.startsWith('FeedUnit')) {
                 return;
             }
             let busyNode;
@@ -48,12 +49,9 @@
             await waitFor(() => {
                 return !busyNode || busyNode.parentNode === null;
             }, Infinity);
-            if (/S[a-zA-Z]*?p[a-zA-Z]*?o[a-zA-Z]*?n[a-zA-Z]*?s[a-zA-Z]*?o[a-zA-Z]*?r/.test(node.textContent || '')) {
-                node.querySelectorAll('[style*="position: absolute"][style *="top: 3em"]').forEach((node) => node.remove());
-                if (/S[a-zA-Z]*?p[a-zA-Z]*?o[a-zA-Z]*?n[a-zA-Z]*?s[a-zA-Z]*?o[a-zA-Z]*?r/.test(node.textContent || '')) {
-                    console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
-                    node.style.display = 'none';
-                }
+            if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
+                console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
+                node.style.display = 'none';
             }
         };
         document.addEventListener('DOMContentLoaded', async () => {
