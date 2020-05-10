@@ -61,6 +61,7 @@ twitch.tv##.mobile-header--toolbar>.button--upsell
 ucnews.in###homepage_header>.download-btn,.bottom-download-app-view,.w-slider-container
 uol.com.br###smart-banner
 walmart.com##.AppBanner
+xw.qq.com##.jsx-4027837263.focus-slider
 zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 
 ! *-----------------------------------* !
@@ -82,6 +83,7 @@ nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
+xw.qq.com##.notice.report
 
 ! *-----------------------* !
 ! | Sticky Videos Section | !
