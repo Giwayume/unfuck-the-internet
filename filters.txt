@@ -58,6 +58,7 @@ tianya.cn##.app-tips
 ticketmaster.com##.md-eventhead.androidapp
 tmall.com##.app-download-popup
 twitch.tv##.mobile-header--toolbar>.button--upsell
+ucnews.in###homepage_header>.download-btn,.bottom-download-app-view,.w-slider-container
 uol.com.br###smart-banner
 walmart.com##.AppBanner
 zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
@@ -78,6 +79,8 @@ latimes.com###reg-overlay
 mangahere.cc##.reader-win-last
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
+theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
+theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
 
 ! *-----------------------* !
