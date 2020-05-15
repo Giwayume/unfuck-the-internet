@@ -77,7 +77,7 @@ instagram.com##body:style(overflow: auto !important)
 ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-inner
 kissanime.ac###upgrade_pop
 latimes.com###reg-overlay
-mangahere.cc##.reader-win-last
+mangahere.cc##.reader-win-last,.reader-mask
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
