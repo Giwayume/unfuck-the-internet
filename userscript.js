@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.3
+// @version      1.0.4
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -49,6 +49,9 @@
             await waitFor(() => {
                 return !busyNode || busyNode.parentNode === null;
             }, Infinity);
+            node.querySelectorAll('.m9osqain [style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
+                fakeNode.remove();
+            });
             if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
                 console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
                 node.style.display = 'none';
