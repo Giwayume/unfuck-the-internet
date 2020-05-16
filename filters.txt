@@ -38,6 +38,7 @@ m.mangahere.cc###edShow
 mangareader.net###googleModal
 mcdonalds.com###smartbanner
 mobile.illinoislottery.com/etc/designs/northstarmobile/appclientlibs/js/mobilepopup.js
+mobiletrans.wondershare.com##.btmNav
 ok.ru##.promo-blck.js-adv
 pinterest.com##.AppUpsellHeader__background
 pixnet.net##.smartbanner.smartbanner_android
