@@ -49,7 +49,7 @@
             await waitFor(() => {
                 return !busyNode || busyNode.parentNode === null;
             }, Infinity);
-            node.querySelectorAll('.m9osqain [style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
+            node.querySelectorAll('[style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
                 fakeNode.remove();
             });
             if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
