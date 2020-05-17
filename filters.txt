@@ -114,6 +114,7 @@ vidlii.com##.abb_parent
 
 capitalxtra.com##.ConsentPanel--v2.ConsentPanel
 dicebreaker.com###optanon-popup-bg,.optanon-alert-box-wrapper
+dxomark.com###cookie-notice
 forum.yoyogames.com###cookie
 moduscreate.com###cookie-law-info-bar
 npmjs.com###hs-eu-cookie-confirmation
