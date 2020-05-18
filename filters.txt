@@ -44,7 +44,7 @@ pinterest.com##.AppUpsellHeader__background
 pixnet.net##.smartbanner.smartbanner_android
 reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial
 reddit.com##.TopNav__promoButton
-reddit.com##.XPromoPopup,.xPromoAppStoreFooter
+reddit.com##.XPromoPopup,.xPromoAppStoreFooter,.XPromoInFeed
 reddit.com##a[class*="Promo"],
 reddit.com##body:style(overflow:auto!important;position:relative!important)
 reddit.com##.PostContent__image-link:style(background-size:contain!important)
