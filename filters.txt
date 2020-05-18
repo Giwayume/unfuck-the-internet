@@ -46,8 +46,8 @@ reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial
 reddit.com##.TopNav__promoButton
 reddit.com##.XPromoPopup,.xPromoAppStoreFooter
 reddit.com##a[class*="Promo"],
-reddit.com##body:style(overflow: auto !important)
-reddit.com##.PostContent__image-link:style(background-size: contain !important)
+reddit.com##body:style(overflow:auto!important;position:relative!important)
+reddit.com##.PostContent__image-link:style(background-size:contain!important)
 seeclickfix.com##.row.app-icons
 soundcloud.com##.upsellBanner,.upsellBanner__app,.footer__appButtonContainer
 stackexchange.com##.app-banner
