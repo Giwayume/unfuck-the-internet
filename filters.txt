@@ -40,7 +40,7 @@ mcdonalds.com###smartbanner
 mobile.illinoislottery.com/etc/designs/northstarmobile/appclientlibs/js/mobilepopup.js
 mobiletrans.wondershare.com##.btmNav
 ok.ru##.promo-blck.js-adv
-pinterest.com##.AppUpsellHeader__background
+pinterest.*##.AppUpsellHeader__background
 pixnet.net##.smartbanner.smartbanner_android
 reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial
 reddit.com##.TopNav__promoButton
@@ -81,6 +81,8 @@ latimes.com###reg-overlay
 mangahere.cc##.reader-win-last,.reader-mask
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
+pinterest.*##body:style(overflow:auto!important)
+pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
