@@ -70,6 +70,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! *-----------------------------------* !
 
 dailywire.com##.ub-emb-container
+forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 instagram.com##.tHaIX
