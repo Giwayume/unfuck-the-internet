@@ -105,6 +105,7 @@ facebook.com###pagelet_marketplace_recently_viewed_rhc
 getdroidtips.com##.adp_interactive_ad
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
+m.imgur.com##.cta-close,.cta-image
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
