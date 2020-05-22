@@ -34,6 +34,8 @@ imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.AppBan
 key.com###smartbanner
 key.com/kco/css/jquery.smartbanner.css
 mangafox.me##.sidetip
+m.imgur.com##.FloatingOIA-container,.SeeImgurOIA-overlay,.SeeImgurOIA-container
+m.imgur.com##body:style(overflow-y:auto!important)
 m.mangahere.cc###edShow
 mangareader.net###googleModal
 mcdonalds.com###smartbanner
