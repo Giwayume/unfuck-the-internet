@@ -130,7 +130,8 @@
                     if (toast.textContent.includes('Still watching?')) {
                         toast.querySelector('paper-button').click();
                         setTimeout(() => {
-                            document.querySelector('paper-toast').remove();
+                            const paperToast = toast.closest('paper-toast');
+                            if (paperToast) paperToast.remove();
                         }, 10);
                     }
                 });
