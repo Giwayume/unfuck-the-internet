@@ -89,6 +89,7 @@ pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
+washingtonpost.com##[data-qa="paywall"]
 xw.qq.com##.notice.report
 
 ! *-----------------------* !
@@ -124,6 +125,7 @@ dxomark.com###cookie-notice
 forum.yoyogames.com###cookie
 moduscreate.com###cookie-law-info-bar
 npmjs.com###hs-eu-cookie-confirmation
+theguardian.com###cmpContainer
 vg247.com###optanon,.optanon-alert-box-wrapper
 windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 
