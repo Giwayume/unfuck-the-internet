@@ -15,7 +15,6 @@
     
     const addCss = (css) => {
         const style = document.createElement('style');
-        style.id = 'custom-style';
         style.type = 'text/css';
         style.innerHTML = css;
         waitFor(() => {
@@ -49,7 +48,7 @@
     \*----------------*/
   
     else if (domain === 'facebook.com') {
-        addCss(`[data-pagelet^="FeedUnit"]{opacity:0.01!important}[data-pagelet^="FeedUnit"].loaded{opacity:1!important}`);
+        addCss(`[data-pagelet^="FeedUnit"]{opacity:0.001!important}[data-pagelet^="FeedUnit"].loaded{opacity:1!important}`);
         let pendingFeedUnits = [];
         let isPurging = false;
         const startPurging = () => {
