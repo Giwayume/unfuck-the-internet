@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.4
+// @version      1.0.5
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -12,6 +12,20 @@
 (function() {
     
     const domain = window.location.hostname.split('.').slice(-2).join('.');
+    
+    const addCss = (css) => {
+        const style = document.createElement('style');
+        style.id = 'custom-style';
+        style.type = 'text/css';
+        style.innerHTML = css;
+        waitFor(() => {
+            const head = document.querySelector('head');
+            if (head) {
+                head.appendChild(style);
+            }
+            return !!head;
+        });
+    };
     
     const waitFor = (conditionCheck, timeout) => {
         return new Promise((resolve, reject) => {
@@ -35,29 +49,62 @@
     \*----------------*/
   
     else if (domain === 'facebook.com') {
-        // Remove sponsored feed items.
-        const purgeFeedUnit = async (node) => {
-            var pageletAttr = node.getAttribute('data-pagelet');
-            if (!pageletAttr || !pageletAttr.startsWith('FeedUnit')) {
+        addCss(`[data-pagelet^="FeedUnit"]{opacity:0.01!important}[data-pagelet^="FeedUnit"].loaded{opacity:1!important}`);
+        let pendingFeedUnits = [];
+        let isPurging = false;
+        const startPurging = () => {
+            if (pendingFeedUnits.length === 0) {
+                isPurging = false;
                 return;
             }
-            let busyNode;
-            await waitFor(() => {
-                busyNode = node.querySelector('[aria-busy="true"]');
-                return !!busyNode;
-            }, 100);
-            await waitFor(() => {
-                return !busyNode || busyNode.parentNode === null;
-            }, Infinity);
-            node.querySelectorAll('[style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
-                fakeNode.remove();
-            });
-            if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
-                console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
-                node.style.display = 'none';
+            else {
+                isPurging = true;
+                for (let i = pendingFeedUnits.length - 1; i >= 0; i--) {
+                    const node = pendingFeedUnits[i];
+                    try {
+                        var pageletAttr = node.getAttribute('data-pagelet');
+                        if (!pageletAttr || !pageletAttr.startsWith('FeedUnit')) {
+                            throw 'ignore';
+                        }
+                        let textSearchNodes = node.querySelectorAll('h4');
+                        if (textSearchNodes.length == 0) {
+                            textSearchNodes = node.querySelectorAll('span');
+                        }
+                        if (textSearchNodes.length == 0) throw 'continue';
+                        let hasFoundText = false;
+                        for (let j = 0; j < textSearchNodes.length; j++) {
+                            if (textSearchNodes[j].textContent != '') {
+                                hasFoundText = true;
+                                break;
+                            }
+                        }
+                        if (!hasFoundText) {
+                            throw 'continue';
+                        }
+                        node.querySelectorAll('[style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
+                            fakeNode.remove();
+                        });
+                        if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
+                            console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
+                            throw 'remove';
+                        }
+                        throw 'ignore';
+                    } catch (signal) {
+                        if (signal == 'remove') {
+                            node.style.display = 'none';
+                        }
+                        else if (signal == 'ignore') {
+                            node.classList.add('loaded');
+                        }
+                        if (signal == 'ignore' || signal == 'remove') {
+                            pendingFeedUnits.splice(i, 1);
+                        }
+                    }
+                    window.requestAnimationFrame(startPurging);
+                }
             }
         };
-        document.addEventListener('DOMContentLoaded', async () => {
+        (async () => {
             let feeds;
             await waitFor(() => {
                 feeds = document.querySelectorAll('[role="feed"]');
@@ -68,17 +115,23 @@
                     const observer = new MutationObserver((mutations) => {
                         mutations.forEach(function(mutation) {
                             for (var i = 0; i < mutation.addedNodes.length; i++) {
-                                purgeFeedUnit(mutation.addedNodes[i]);
+                                pendingFeedUnits.push(mutation.addedNodes[i]);
+                                if (!isPurging) {
+                                    startPurging();
+                                }
                             }
                         });
                     })
                     observer.observe(feed, { childList: true });
                     feed.querySelectorAll('[data-pagelet^="FeedUnit"]').forEach(async (node) => {
-                        purgeFeedUnit(node);
+                        pendingFeedUnits.push(node);
+                        if (!isPurging) {
+                            startPurging();
+                        }
                     });
                 });
             }
-        });
+        })();
     }
   
     /*-----------------*\
