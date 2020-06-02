@@ -129,6 +129,7 @@
             for (let observer of feedObservers) {
                 observer.disconnect();
             }
+            pendingFeedUnits = [];
             feedObservers = [];
             let feeds;
             await waitFor(() => {
