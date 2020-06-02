@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.5
+// @version      1.0.6
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -25,6 +25,22 @@
             return !!head;
         });
     };
+  
+    const onHistoryChange = (callback) => {
+        var originalPushState = History.prototype.pushState;
+        var originalReplaceState = History.prototype.replaceState;
+        History.prototype.pushState = function() {
+            callback('push', { ...arguments });
+            return originalPushState.apply(this, arguments);
+        };
+        History.prototype.replaceState = function() {
+            callback('replace', { ...arguments });
+            return originalReplaceState.apply(this, arguments);
+        };
+        window.addEventListener('popstate', (event) => {
+            callback('pop', event);
+        });
+    }
     
     const waitFor = (conditionCheck, timeout) => {
         return new Promise((resolve, reject) => {
@@ -48,6 +64,11 @@
     \*----------------*/
   
     else if (domain === 'facebook.com') {
+        onHistoryChange((stateName) => {
+            if (window === window.top) {
+                searchForFeeds();
+            }
+        });
         addCss(`[data-pagelet^="FeedUnit"]{opacity:0.001!important}[data-pagelet^="FeedUnit"].loaded{opacity:1!important}`);
         let pendingFeedUnits = [];
         let isPurging = false;
@@ -103,7 +124,12 @@
                 }
             }
         };
-        (async () => {
+        let feedObservers = [];
+        const searchForFeeds = async () => {
+            for (let observer of feedObservers) {
+                observer.disconnect();
+            }
+            feedObservers = [];
             let feeds;
             await waitFor(() => {
                 feeds = document.querySelectorAll('[role="feed"]');
@@ -122,6 +148,7 @@
                         });
                     })
                     observer.observe(feed, { childList: true });
+                    feedObservers.push(observer);
                     feed.querySelectorAll('[data-pagelet^="FeedUnit"]').forEach(async (node) => {
                         pendingFeedUnits.push(node);
                         if (!isPurging) {
@@ -130,7 +157,8 @@
                     });
                 });
             }
-        })();
+        };
+        searchForFeeds();
     }
   
     /*-----------------*\
@@ -181,10 +209,6 @@
                 toasts.forEach((toast) => {
                     if (toast.textContent.includes('Still watching?')) {
                         toast.querySelector('paper-button').click();
-                        setTimeout(() => {
-                            const paperToast = toast.closest('paper-toast');
-                            if (paperToast) paperToast.remove();
-                        }, 10);
                     }
                 });
             })();
