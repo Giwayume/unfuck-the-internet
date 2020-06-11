@@ -104,7 +104,7 @@
                         node.querySelectorAll('[style*="position: absolute"][style*="top: 3em"]').forEach((fakeNode) => {
                             fakeNode.remove();
                         });
-                        if (/S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d/.test(node.textContent || '')) {
+                        if (/(S\-*?p\-*?o\-*?n\-*?s\-*?o\-*?r\-*?e\-*?d|Suggested for You)/.test(node.textContent || '')) {
                             console.log('[unfuck-the-internet] Sponsored content hidden.', node.textContent);
                             throw 'remove';
                         }
