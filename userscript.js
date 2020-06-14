@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.6
+// @version      1.0.7
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -10,6 +10,11 @@
 // ==/UserScript==
 
 (function() {
+  
+    // Websites sometimes mess with these, save them.
+    const setInterval = window.setInterval;
+    const setTimeout = window.setTimeout;
+    const clearInterval = window.clearInterval;
     
     const domain = window.location.hostname.split('.').slice(-2).join('.');
     
@@ -42,16 +47,21 @@
         });
     }
     
+    const waitIntervals = [];
     const waitFor = (conditionCheck, timeout) => {
         return new Promise((resolve, reject) => {
-            const checkInterval = setInterval(() => {
-                if (conditionCheck()) {
-                    clearInterval(checkInterval);
-                    resolve();
-                }
-            }, 10);
+            let intervalIndex;
+            waitIntervals.push(
+                setInterval(() => {
+                    if (conditionCheck()) {
+                        clearInterval(waitIntervals[intervalIndex]);
+                        resolve();
+                    }
+                }, 10)
+            );
+            intervalIndex = waitIntervals.length - 1;
             setTimeout(() => {
-                clearInterval(checkInterval);
+                clearInterval(waitIntervals[intervalIndex]);
                 resolve();
             }, timeout || 5000);
         });
@@ -64,6 +74,9 @@
     \*----------------*/
   
     else if (domain === 'facebook.com') {
+        if (window !== window.top) {
+            return;
+        }
         onHistoryChange((stateName) => {
             if (window === window.top) {
                 searchForFeeds();
@@ -125,16 +138,20 @@
             }
         };
         let feedObservers = [];
+        let feedSearchId;
         const searchForFeeds = async () => {
+            feedSearchId = Math.random();
+            let localFeedSearchId = feedSearchId;
             for (let observer of feedObservers) {
                 observer.disconnect();
             }
             pendingFeedUnits = [];
             feedObservers = [];
             let feeds;
+            console.log('search');
             await waitFor(() => {
                 feeds = document.querySelectorAll('[role="feed"]');
-                return feeds.length > 0;
+                return feeds.length > 0 || localFeedSearchId !== feedSearchId;
             });
             if (feeds) {
                 feeds.forEach((feed) => {
