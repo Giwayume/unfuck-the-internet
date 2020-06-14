@@ -82,6 +82,16 @@
                 searchForFeeds();
             }
         });
+        document.addEventListener('click', (event) => {
+            if (event.target) {
+                const clickableTarget = event.target.closest('a, button, [role="button"]');
+                if (clickableTarget) {
+                    if (clickableTarget.getAttribute('aria-label') === 'Refresh News Feed') {
+                        window.location.reload();
+                    }
+                }
+            }
+        });
         addCss(`[data-pagelet^="FeedUnit"]{opacity:0.001!important}[data-pagelet^="FeedUnit"].loaded{opacity:1!important}`);
         let pendingFeedUnits = [];
         let isPurging = false;
