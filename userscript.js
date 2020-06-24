@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.7
+// @version      1.0.8
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -29,6 +29,7 @@
             }
             return !!head;
         });
+        return style;
     };
   
     const onHistoryChange = (callback) => {
@@ -213,6 +214,33 @@
                         }
                     }, 1);
                 }
+            });
+        });
+    }
+  
+    
+    /*---------------*\
+    | | nhentai.com | |
+    \*---------------*/
+  
+    else if (domain === 'nhentai.net') {
+        const styles = addCss(`.reader-buttons-right { display: none !important; } html.reader #image-container.fit-both { height: auto !important; } html.reader #image-container.fit-both img { max-height: none; width: 800px; }`);
+        document.addEventListener('keydown', (e) => {
+           if (!window.n) {
+              if (e.key === 'ArrowRight') {
+                  document.querySelector('.next').click();
+              }
+              else if (e.key === 'ArrowLeft') {
+                  document.querySelector('.previous').click();
+              }
+           }
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.n) {
+                styles.remove();
+            }
+            document.querySelectorAll('img.lazyload').forEach(image => {
+                image.src = image.getAttribute('data-src');
             });
         });
     }
