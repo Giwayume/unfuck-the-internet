@@ -241,6 +241,9 @@
             }
             document.querySelectorAll('img.lazyload').forEach(image => {
                 image.src = image.getAttribute('data-src');
+                image.onerror = () => {
+                    image.src = image.getAttribute('data-src');
+                };
             });
         });
     }
