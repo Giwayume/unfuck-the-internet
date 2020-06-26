@@ -71,6 +71,8 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! | Annoying Overlays/Content Section | !
 ! *-----------------------------------* !
 
+caranddriver.com##body.tp-modal-open:style(overflow: auto !important;)
+caranddriver.com##.tp-modal,.tp-active.tp-backdrop
 dailywire.com##.ub-emb-container
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
