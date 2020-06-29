@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.8
+// @version      1.0.9
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -195,6 +195,7 @@
     \*-----------------*/
     
     else if (domain === 'instagram.com') {
+        sessionStorage.setItem('loggedOutCTAIsShown', '1');
         // Remove popups prompting user to login, when it's not actually necessary.
         document.addEventListener('DOMContentLoaded', () => {
             document.body.addEventListener('click', (e) => {
@@ -217,7 +218,6 @@
             });
         });
     }
-  
     
     /*---------------*\
     | | nhentai.com | |
