@@ -218,6 +218,39 @@
             });
         });
     }
+  
+    /*----------------*\
+    | | mangahere.cc | |
+    \*----------------*/
+    
+    else if (domain === 'mangahere.cc') {
+        const addEventListenerOriginal = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function(type, listener) {
+            if (type === 'contextmenu') {
+                setTimeout(() => {
+                    jQuery(this).off('contextmenu');
+                }, 1);
+            }
+            else if (type === 'mouseup') {
+                setTimeout(() => {
+                    if (this.classList.contains('reader-main-img')) {
+                        jQuery(this).off('mouseup');
+                        jQuery(this).on('mouseup', (e) => {
+                            if (e.button === 0) {
+                                const nextPageLink = jQuery('.pager-list-left a.active').next();
+                                if (nextPageLink.length > 0) {
+                                    nextPageLink.click();
+                                } else {
+                                    window.location = jQuery('.pager-list-left a.chapter:contains(Next)').get(0).href;
+                                }
+                            }
+                        })
+                    }
+                }, 1);
+            }
+            return addEventListenerOriginal.apply(this, arguments);
+        };
+    }  
     
     /*---------------*\
     | | nhentai.com | |
