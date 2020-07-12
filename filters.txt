@@ -144,6 +144,7 @@ youtube.com##.branding-img-container,.ytp-paid-content-overlay
 youtube.com###main.ytd-mealbar-promo-renderer
 youtube.com##.ytp-ce-video
 youtube.com##.ytp-ce-channel
+youtube.com##.ytp-pause-overlay
 
 ! *--------------------* !
 ! | Auto-notifications | !
