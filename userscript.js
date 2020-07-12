@@ -280,6 +280,19 @@
             });
         });
     }
+  
+    /*--------------*\
+    | | rule34.xxx | |
+    \*--------------*/
+  
+    else if (domain === 'rule34.xxx') {
+        addCss(`#image { max-width: 100%; height: auto; } .thumb { width: 200px; height: 200px; }`);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.thumb a').forEach(link => {
+                link.target = '_blank';
+            });
+        });
+    }
     
     /*---------------*\
     | | youtube.com | |
