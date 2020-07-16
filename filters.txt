@@ -96,6 +96,8 @@ theatlantic.com##body:style(overflow: auto !important; position: static !importa
 thehill.com##.preloaded_lightbox
 washingtonpost.com##[data-qa="paywall"]
 xw.qq.com##.notice.report
+youtube.com##ytd-compact-promoted-item-renderer
+youtube.com##ytd-badge-supported-renderer:upward(ytd-rich-section-renderer)
 
 ! *-----------------------* !
 ! | Sticky Videos Section | !
@@ -145,7 +147,6 @@ youtube.com###main.ytd-mealbar-promo-renderer
 youtube.com##.ytp-ce-video
 youtube.com##.ytp-ce-channel
 youtube.com##.ytp-pause-overlay
-youtube.com##ytd-compact-promoted-item-renderer
 
 ! *--------------------* !
 ! | Auto-notifications | !
