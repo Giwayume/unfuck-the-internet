@@ -104,6 +104,7 @@ youtube.com##ytd-badge-supported-renderer:upward(ytd-rich-section-renderer)
 ! *-----------------------* !
 
 digitaltrends.com##.m-sticky-video.is-stuck
+fandom.com##.featured-video.is-collapsed
 ibtimes.com##.videocontent-wrapper.stickyPlayer
 msn.com##.xnetvidplayer.playershrunk
 
