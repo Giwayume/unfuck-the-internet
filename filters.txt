@@ -154,6 +154,8 @@ youtube.com###main.ytd-mealbar-promo-renderer
 youtube.com##.ytp-ce-video
 youtube.com##.ytp-ce-channel
 youtube.com##.ytp-pause-overlay
+youtube.com##ytd-thumbnail>a>#mouseover-overlay
+youtube.com##ytd-thumbnail>a>#hover-overlays
 
 ! *--------------------* !
 ! | Auto-notifications | !
