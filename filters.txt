@@ -124,6 +124,7 @@ m.imgur.com##.cta-close,.cta-image
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 readjojolion.com##.pages__ad
+reddit.com##.CommentsPage>article[style*="z-index"]
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
 m.youtube.com##ytm-promoted-video-renderer
