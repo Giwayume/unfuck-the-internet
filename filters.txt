@@ -117,6 +117,7 @@ businessinsider.com##.tp-modal-open:style(overflow: auto !important)
 businessinsider.com##.tp-modal
 businessinsider.com##.tp-active.tp-backdrop
 facebook.com###pagelet_marketplace_recently_viewed_rhc
+facebook.com###pagelet_megaphone
 getdroidtips.com##.adp_interactive_ad
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
