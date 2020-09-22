@@ -78,6 +78,7 @@ caranddriver.com##.tp-modal,.tp-active.tp-backdrop
 dailywire.com##.ub-emb-container
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
+google.com##[data-id^="Refinements"]
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 instagram.com##.tHaIX
 instagram.com##body:style(overflow: auto !important)
@@ -92,6 +93,8 @@ nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 pinterest.*##body:style(overflow:auto!important)
 pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
+pro-tools-expert.com##.TEXT.TOP_LEFT.DARK.POPUP.sqs-cookie-banner-v2
+pro-tools-expert.com###PopupSignupForm_0
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
@@ -104,6 +107,8 @@ youtube.com##ytd-badge-supported-renderer:upward(ytd-rich-section-renderer)
 ! | Sticky Videos Section | !
 ! *-----------------------* !
 
+charlotteobserver.com##.is-sticky.mi-sticky-player
+charlotteobserver.com##.is-sticky.video
 digitaltrends.com##.m-sticky-video.is-stuck
 fandom.com##.featured-video.is-collapsed
 ibtimes.com##.videocontent-wrapper.stickyPlayer
@@ -116,16 +121,22 @@ msn.com##.xnetvidplayer.playershrunk
 businessinsider.com##.tp-modal-open:style(overflow: auto !important)
 businessinsider.com##.tp-modal
 businessinsider.com##.tp-active.tp-backdrop
+dzone.com###adtoniq-msgr-bar
 facebook.com###pagelet_marketplace_recently_viewed_rhc
 facebook.com###pagelet_megaphone
 getdroidtips.com##.adp_interactive_ad
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 m.imgur.com##.cta-close,.cta-image
+mangahere.cc##.yd-mask
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
+popsugar.com##.container
+popsugar.com##.background-layer
 readjojolion.com##.pages__ad
 reddit.com##.CommentsPage>article[style*="z-index"]
+roll20.net##.squareImageContainer
+roll20.net##.bna
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
 m.youtube.com##ytm-promoted-video-renderer
@@ -135,12 +146,22 @@ vidlii.com##.abb_parent
 ! | UK Cookie Law Section | !
 ! *-----------------------* !
 
+###onetrust-banner-sdk
+###onetrust-consent-sdk
+###onetrust-pc-sdk
+###onetrust-policy-text
+##.ot-fade-in.onetrust-pc-dark-filter
+
+aao.org###optanon-popup-bg
+aao.org##.hide-cookie-setting-button.optanon-alert-box-wrapper
 capitalxtra.com##.ConsentPanel--v2.ConsentPanel
 dicebreaker.com###optanon-popup-bg,.optanon-alert-box-wrapper
 dxomark.com###cookie-notice
 forum.yoyogames.com###cookie
 moduscreate.com###cookie-law-info-bar
 npmjs.com###hs-eu-cookie-confirmation
+nypost.com###web-alerts-modal
+nypost.com##.nyp-sitewide-notice
 theguardian.com###cmpContainer
 vg247.com###optanon,.optanon-alert-box-wrapper
 windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
@@ -149,6 +170,7 @@ windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 ! | Unnecessary Video Overlays Section | !
 ! *------------------------------------* !
 
+youtube.com##.ytp-cards-teaser-text
 youtube.com##ytd-mealbar-promo-renderer
 youtube.com##.iv-click-target.branding-img
 youtube.com##.branding-img-container,.ytp-paid-content-overlay
