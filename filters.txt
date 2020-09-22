@@ -125,6 +125,7 @@ dzone.com###adtoniq-msgr-bar
 facebook.com###pagelet_marketplace_recently_viewed_rhc
 facebook.com###pagelet_megaphone
 getdroidtips.com##.adp_interactive_ad
+independent.co.uk###footerPrompt
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 m.imgur.com##.cta-close,.cta-image
