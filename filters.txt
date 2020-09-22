@@ -72,9 +72,10 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ! | Annoying Overlays/Content Section | !
 ! *-----------------------------------* !
 
+##.tp-modal-open:style(overflow: auto !important;)
+##.tp-modal,.tp-backdrop
+
 third-party.animekisa.tv##body>[style*="z-index"]
-caranddriver.com##body.tp-modal-open:style(overflow: auto !important;)
-caranddriver.com##.tp-modal,.tp-active.tp-backdrop
 dailywire.com##.ub-emb-container
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
@@ -119,14 +120,13 @@ msn.com##.xnetvidplayer.playershrunk
 ! | Adblock Section | !
 ! *-----------------* !
 
-businessinsider.com##.tp-modal-open:style(overflow: auto !important)
-businessinsider.com##.tp-modal
 businessinsider.com##.tp-active.tp-backdrop
 dzone.com###adtoniq-msgr-bar
 facebook.com###pagelet_marketplace_recently_viewed_rhc
 facebook.com###pagelet_megaphone
 getdroidtips.com##.adp_interactive_ad
 independent.co.uk###footerPrompt
+independent.co.uk###stickyFooterRoot
 jsfiddle.net###keep-us-running
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 m.imgur.com##.cta-close,.cta-image
