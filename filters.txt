@@ -102,7 +102,7 @@ charlotteobserver.com##.is-sticky.video
 digitaltrends.com##.m-sticky-video.is-stuck
 fandom.com##.featured-video.is-collapsed
 ibtimes.com##.videocontent-wrapper.stickyPlayer
-independent.co.uk##.is-sticky-video
+independent.co.uk##.video-sticky-video
 msn.com##.xnetvidplayer.playershrunk
 
 ! *-----------------* !
