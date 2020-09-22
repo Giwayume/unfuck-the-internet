@@ -13,37 +13,31 @@
 ! | Mobile App Interstitials Section | !
 ! *----------------------------------* !
 
+##.AppBanner
+###smartBanner
+##.smart-app-banner
+##.app-banner
+
 accuweather.com###app-store-links
 alibaba.com##ai-download-app-zyl,a[href*="apps.do"]
 aliexpress.com###ms-downloadbar-wrap
-amazon.com##.smart-app-banner
-amazon.co.uk##.smart-app-banner
-amazon.de##.smart-app-banner
-amazon.in##.smart-app-banner
 animefreak.tv###googleModal,a[href*="animemobile.com"]
-bpiexpressonline.com###smartbanner
 booking.com##.appacq-banner-rating-wrap
 bulumanga.com##.foot-download,.foot-download+.footer
-dailymail.co.uk###smartBanner
-deviantart.com###smartbanner.android
 diamondbank.com/wp-content/plugins/popup-maker/assets/css/
 foursquare.com##.getTheAppPrompt,#mobileDownload>#contents>#container>#download,#mobileDownload>#contents>#container>#alsoOn
 foxnews.com##a[href*="AppArticleLink"]
-gtbank.com###smartbanner
-imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.AppBanner,.getTheApp,.get-app-block
-key.com###smartbanner
+imgur.com##.FloatingOIA-container,.FloatingOIA,.PostContainer-postGetApp,.getTheApp,.get-app-block
 key.com/kco/css/jquery.smartbanner.css
 mangafox.me##.sidetip
 m.imgur.com##.FloatingOIA-container,.SeeImgurOIA-overlay,.SeeImgurOIA-container
 m.imgur.com##body:style(overflow-y:auto!important)
 m.mangahere.cc###edShow
 mangareader.net###googleModal
-mcdonalds.com###smartbanner
 mobile.illinoislottery.com/etc/designs/northstarmobile/appclientlibs/js/mobilepopup.js
 mobiletrans.wondershare.com##.btmNav
 ok.ru##.promo-blck.js-adv
 pinterest.*##.AppUpsellHeader__background
-pixnet.net##.smartbanner.smartbanner_android
 reddit.com##.SnackBar,.XPromoPill,.DualPartInterstitial
 reddit.com##.TopNav__promoButton
 reddit.com##.TopNav__badge
@@ -53,10 +47,6 @@ reddit.com##body:style(overflow:auto!important;position:relative!important)
 reddit.com##.PostContent__image-link:style(background-size:contain!important)
 seeclickfix.com##.row.app-icons
 soundcloud.com##.upsellBanner,.upsellBanner__app,.footer__appButtonContainer
-stackexchange.com##.app-banner
-stackoverflow.com##.app-banner
-standardbank.co.za##.smartbanner
-statefarm.com##.app-banner
 taobao.com##.app-download
 tianya.cn##.app-tips
 ticketmaster.com##.md-eventhead.androidapp
@@ -64,7 +54,6 @@ tmall.com##.app-download-popup
 twitch.tv##.mobile-header--toolbar>.button--upsell
 ucnews.in###homepage_header>.download-btn,.bottom-download-app-view,.w-slider-container
 uol.com.br###smart-banner
-walmart.com##.AppBanner
 xw.qq.com##.jsx-4027837263.focus-slider
 zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 
