@@ -130,6 +130,7 @@ roll20.net##.squareImageContainer
 roll20.net##.bna
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
+youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
 m.youtube.com##ytm-promoted-video-renderer
 vidlii.com##.abb_parent
 
