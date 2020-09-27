@@ -171,6 +171,7 @@ youtube.com##.ytp-ce-channel
 youtube.com##.ytp-pause-overlay
 youtube.com##ytd-thumbnail>a>#mouseover-overlay
 youtube.com##ytd-thumbnail>a>#hover-overlays
+youtube.com###watch-checkout-offers
 
 ! *--------------------* !
 ! | Auto-notifications | !
