@@ -144,6 +144,7 @@ vidlii.com##.abb_parent
 ###onetrust-pc-sdk
 ###onetrust-policy-text
 ##.ot-fade-in.onetrust-pc-dark-filter
+##.cookie__wrapper
 
 aao.org###optanon-popup-bg
 aao.org##.hide-cookie-setting-button.optanon-alert-box-wrapper
