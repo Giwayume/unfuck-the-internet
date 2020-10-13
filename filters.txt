@@ -168,6 +168,7 @@ youtube.com##ytd-mealbar-promo-renderer
 youtube.com##.iv-click-target.branding-img
 youtube.com##.branding-img-container,.ytp-paid-content-overlay
 youtube.com###main.ytd-mealbar-promo-renderer
+youtube.com##.mealbar-promo-renderer
 youtube.com##.ytp-ce-video
 youtube.com##.ytp-ce-channel
 youtube.com##.ytp-pause-overlay
