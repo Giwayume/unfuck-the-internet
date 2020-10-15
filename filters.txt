@@ -122,6 +122,7 @@ m.imgur.com##.cta-close,.cta-image
 mangahere.cc##.yd-mask
 mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
+static.nhentai.net/js/*
 nhentai.net##.announcement
 popsugar.com##.container
 popsugar.com##.background-layer
