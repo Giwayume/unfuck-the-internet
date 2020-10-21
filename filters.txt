@@ -66,6 +66,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 
 third-party.animekisa.tv##body>[style*="z-index"]
 dailywire.com##.ub-emb-container
+facebook.com##a[href="/"]
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
 google.com##[data-id^="Refinements"]
