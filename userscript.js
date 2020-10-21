@@ -78,7 +78,7 @@
         if (window !== window.top) {
             return;
         }
-        if (/^[\/]?$/g..test(location.pathname)) {
+        if (/^[\/]?$/g.test(location.pathname)) {
             location = '/messages/t/';
         }
     }
