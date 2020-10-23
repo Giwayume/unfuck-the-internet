@@ -175,6 +175,23 @@
     }
   
     /*--------------*\
+    | | reddit.com | |
+    \*--------------*/
+  
+    else if (domain === 'reddit.com') {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[id*="vote-arrows"]').forEach((node) => {
+                node.querySelectorAll(':scope > :not(button)').forEach((node) => {
+                    const screenReaderNode = node.querySelector('[role="screen-reader"]');
+                    console.log(screenReaderNode.parentNode);
+                    addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
+                    addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
+                });
+            });
+        });
+    }
+  
+    /*--------------*\
     | | rule34.xxx | |
     \*--------------*/
   
