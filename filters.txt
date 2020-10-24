@@ -125,6 +125,7 @@ mangahere.cc##edShow,.sitemaji_banner
 news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 static.nhentai.net/js/*
 nhentai.net##.announcement
+nhentai.net##.advertisement
 popsugar.com##.container
 popsugar.com##.background-layer
 readjojolion.com##.pages__ad
