@@ -9,6 +9,12 @@
 ! RedundantRules: https://arestwo.org/famlam/redundantRuleChecker.html
 ! RegExpVisualizer http://www.regexper.com/
 
+! *-----------------------------* !
+! | Block Google Sign-In Prompt | !
+! *-----------------------------* !
+
+smartlock.google.com|~reddit.com
+
 ! *----------------------------------* !
 ! | Mobile App Interstitials Section | !
 ! *----------------------------------* !
