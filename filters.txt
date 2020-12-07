@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.4
+! Version: 1.0.5
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -13,7 +13,7 @@
 ! | Block Google Sign-In Prompt | !
 ! *-----------------------------* !
 
-smartlock.google.com|~reddit.com
+reddit.com/account/sso/one_tap/
 
 ! *----------------------------------* !
 ! | Mobile App Interstitials Section | !
