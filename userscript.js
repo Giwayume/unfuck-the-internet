@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.14
+// @version      1.0.15
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -81,6 +81,28 @@
         if (/^[\/]?$/g.test(location.pathname)) {
             location = '/messages/t/';
         }
+    }
+  
+    /*----------------------*\
+    | | factschronicle.com | |
+    \*----------------------*/
+  
+    else if (domain === 'factschronicle.com') {
+        addCss('* { user-select: auto !important; } h1,h2,h3,h4,h5,h6,p { cursor: initial !important; }');
+        const setAttribute = Element.prototype.setAttribute;
+        Element.prototype.setAttribute = function(name) {
+            if (name === 'unselectable') return;
+            return setAttribute.apply(this, arguments);
+        };
+        Object.defineProperty(window, 'ai_front', { configurable: false, value: null, writable: false });
+        Object.defineProperty(window, 'ai_run_scripts', { configurable: false, value: null, writable: false });
+        Object.defineProperty(window, 'disableSelection', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'oncontextmenu', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'ondragstart', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'onload', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'onmousedown', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'onkeydown', { configurable: false, value: null, writable: false });
+        Object.defineProperty(document, 'onselectstart', { configurable: false, value: null, writable: false });
     }
   
     /*-----------------*\
