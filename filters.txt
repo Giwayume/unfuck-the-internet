@@ -196,5 +196,3 @@ facebook.com##a[href*="/watch/"] .gky8063y
 ! | Interaction Prevention | !
 ! *------------------------* !
 
-factschronicle.com##body:style(user-select: all !important)
-factschronicle.com##.unselectable:style(user-select: all !important)
