@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.15
+// @version      1.0.16
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -210,13 +210,9 @@
   
     else if (domain === 'reddit.com') {
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('[id*="vote-arrows"]').forEach((node) => {
-                node.querySelectorAll(':scope > :not(button)').forEach((node) => {
-                    const screenReaderNode = node.querySelector('[role="screen-reader"]');
-                    console.log(screenReaderNode.parentNode);
-                    addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
-                    addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
-                });
+            document.querySelectorAll('[id*="vote-arrows"] > :not(button) [role="screen-reader"], [data-click-id="comments"] [role="screen-reader"]').forEach((screenReaderNode) => {
+                addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
+                addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
             });
         });
     }
