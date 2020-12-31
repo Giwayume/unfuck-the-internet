@@ -228,9 +228,11 @@
                 link.target = '_blank';
             });
             document.querySelectorAll('img').forEach(img => {
-                img.src = img.getAttribute('data-cfsrc');
-                img.style.display = 'block';
-                img.style.visibility = 'visible';
+                if (img.getAttribute('data-cfsrc')) {
+                    img.src = img.getAttribute('data-cfsrc');
+                    img.style.display = 'block';
+                    img.style.visibility = 'visible';
+                }
             });
         });
     }
