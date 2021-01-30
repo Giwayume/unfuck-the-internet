@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.17
+// @version      1.0.18
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -180,7 +180,20 @@
             }
             return addEventListenerOriginal.apply(this, arguments);
         };
-    }  
+    }
+  
+    /*-------------------*\
+    | | mangakakalot.tv | |
+    \*-------------------*/
+  
+    else if (domain === 'mangakakalot.tv') {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-src]').forEach((node) => {
+                console.log(node);
+                node.src = node.getAttribute('data-src');
+            });
+        });
+    }
     
     /*---------------*\
     | | nhentai.com | |
