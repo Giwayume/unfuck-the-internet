@@ -271,8 +271,7 @@
     
     else if (domain === 'youtube.com') {
         // Auto-accept "Are you still watching?" toasts.
-        setInterval(function() {
-            'use strict';
+        setInterval(() => {
             if (document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer').length >= 1) {
                 for (let i = 0; i < document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer').length; i++) {
                     if (document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer')[i].innerText == "Video paused. Continue watching?") {
@@ -288,7 +287,7 @@
                     }
                 });
             })();
-        }, 10)();
+        }, 10);
     }
     
 })();
