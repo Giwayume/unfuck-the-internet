@@ -186,6 +186,7 @@ youtube.com##ytd-thumbnail>a>#mouseover-overlay
 youtube.com##ytd-thumbnail>a>#hover-overlays
 youtube.com###watch-checkout-offers
 youtube.com##ytd-clarification-renderer
+youtube.com##ytd-statement-banner-renderer
 
 ! *--------------------* !
 ! | Auto-notifications | !
