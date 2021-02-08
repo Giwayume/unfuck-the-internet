@@ -139,7 +139,7 @@ readjojolion.com##.pages__ad
 reddit.com##.CommentsPage>article[style*="z-index"]
 roll20.net##.squareImageContainer
 roll20.net##.bna
-rule34.xxx##body:style(background-image: none)
+rule34.xxx##body:style(background:#aae5a3 !important)
 rule34.xxx###lbot1
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
