@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.5
+! Version: 1.0.6
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -141,6 +141,7 @@ roll20.net##.squareImageContainer
 roll20.net##.bna
 rule34.xxx##body:style(background:#aae5a3 !important)
 rule34.xxx###lbot1
+rule34.xxx###paginator~.horizontalFlexWithMargins
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
 youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
