@@ -142,6 +142,7 @@ roll20.net##.bna
 rule34.xxx##body:style(background:#aae5a3 !important)
 rule34.xxx###lbot1
 rule34.xxx###paginator~.horizontalFlexWithMargins
+rule34.xxx##.flexi~.horizontalFlexWithMargins
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 youtube.com##ytm-promoted-video-renderer
 youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
