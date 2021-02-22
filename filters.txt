@@ -23,6 +23,7 @@ reddit.com/account/sso/one_tap/
 ###smartBanner
 ##.smart-app-banner
 ##.app-banner
+##.js-consent-banner
 
 accuweather.com###app-store-links
 alibaba.com##ai-download-app-zyl,a[href*="apps.do"]
