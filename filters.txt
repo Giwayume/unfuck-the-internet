@@ -72,12 +72,15 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ##.tp-modal,.tp-backdrop
 
 third-party.animekisa.tv##body>[style*="z-index"]
+cjponyparts.com##.modals-overlay
+cjponyparts.com##.modals-wrapper
 dailywire.com##.ub-emb-container
 facebook.com##a[href="/"]
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
 google.com##[data-id^="Refinements"]
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
+influencermarketinghub.com###ccl_ppu
 instagram.com##.tHaIX
 instagram.com##body:style(overflow: auto !important)
 instagram.com##body>[role="presentation"]
@@ -87,13 +90,16 @@ ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-i
 kissanime.ac###upgrade_pop
 latimes.com###reg-overlay
 mangahere.cc##.reader-win-last,.reader-mask
+mangatown.com##body>header
 newbernsj.com##.tp-modal-open:style(overflow: auto !important)
+nhentai.net##.announcement
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
 pinterest.*##body:style(overflow:auto!important)
 pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
 pro-tools-expert.com##.TEXT.TOP_LEFT.DARK.POPUP.sqs-cookie-banner-v2
 pro-tools-expert.com###PopupSignupForm_0
+pushsquare.com##.dgp-consent
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
@@ -113,6 +119,7 @@ fandom.com##.featured-video.is-collapsed
 ibtimes.com##.videocontent-wrapper.stickyPlayer
 independent.co.uk##.video-sticky-video
 msn.com##.xnetvidplayer.playershrunk
+newbernsj.com##aside:has([data-t-pl*="automatedvideoplayer"])
 
 ! *-----------------* !
 ! | Adblock Section | !
@@ -161,13 +168,20 @@ vidlii.com##.abb_parent
 ###onetrust-policy-text
 ##.ot-fade-in.onetrust-pc-dark-filter
 ##.cookie__wrapper
+##.wordpress-gdpr-popup
 
+3dprintingmedia.network###snppopup-welcome,.wordpress-gdpr-popup
 aao.org###optanon-popup-bg
 aao.org##.hide-cookie-setting-button.optanon-alert-box-wrapper
+autocar.co.uk##.ot-fade-in.onetrust-pc-dark-filter
+autocar.co.uk###onetrust-consent-sdk
 capitalxtra.com##.ConsentPanel--v2.ConsentPanel
 dicebreaker.com###optanon-popup-bg,.optanon-alert-box-wrapper
 dxomark.com###cookie-notice
+eurogamer.net##.ot-fade-in.onetrust-pc-dark-filter
+eurogamer.net###onetrust-consent-sdk
 forum.yoyogames.com###cookie
+ft.com##.variant-cookieConsentC.cookie-banner
 moduscreate.com###cookie-law-info-bar
 npmjs.com###hs-eu-cookie-confirmation
 nypost.com###web-alerts-modal
@@ -196,6 +210,7 @@ youtube.com##ytd-clarification-renderer
 youtube.com##ytd-rich-section-renderer:has(ytd-statement-banner-renderer)
 youtube.com##ytd-statement-banner-renderer
 youtube.com##ytm-watch-metadata-app-promo-renderer
+youtube.com##.ytp-cards-button-icon-default > .ytp-cards-button-icon
 
 ! *--------------------* !
 ! | Auto-notifications | !
