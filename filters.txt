@@ -78,6 +78,7 @@ dailywire.com##.ub-emb-container
 facebook.com##a[href="/"]
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
+futurism.com##.tp-modal-open:style(overflow: auto !important)
 google.com##[data-id^="Refinements"]
 ibtimes.com##.wf2-bg-light.grwf2_backdrop
 influencermarketinghub.com###ccl_ppu
