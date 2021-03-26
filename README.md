@@ -34,7 +34,12 @@ Installing the filter list will solve most problems, but don't forget to also in
 1. Install a userscript extension like [Violentmonkey](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag?hl=en)
 2. Add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
 
-### Firefox (Desktop and Mobile)
+### Firefox (Desktop)
 
 1. Install a userscript extension like [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
 2. Add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
+
+### Firefox (Mobile)
+
+1. You can add user scripts through uBlock origin addon, by utilizing the `userResourcesLocation` variable in [advanced settings](https://github.com/gorhill/uBlock/wiki/Advanced-settings).
+2. Add this URL to `userResourcesLocation`: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
