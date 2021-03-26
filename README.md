@@ -41,5 +41,5 @@ Installing the filter list will solve most problems, but don't forget to also in
 
 ### Firefox (Mobile)
 
-1. You can add user scripts through uBlock origin addon, by utilizing the `userResourcesLocation` variable in [advanced settings](https://github.com/gorhill/uBlock/wiki/Advanced-settings).
-2. Add this URL to `userResourcesLocation`: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
+1. Firefox mobile has made an unfortunate decision to treat extensions with a walled garden approach, following Chrome's lead. At least for now, you can install a userscript extension like [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) by hacking your way around the problem. Follow this article's instructions: https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/
+2. After the userscript extension is installed, add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
