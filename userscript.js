@@ -67,6 +67,26 @@
             }, timeout || 5000);
         });
     };
+  
+    const disablePageviewAPI = () => {
+        document.addEventListener("visibilitychange", function(e) {
+            e.stopImmediatePropagation();
+        }, true);
+        Object.defineProperty(Document.prototype, "hidden", {
+            get: function hidden() {
+                return false;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(Document.prototype, "visibilityState", {
+            get: function visibilityState() {
+                return "visible";
+            },
+            enumerable: true,
+            configurable: true
+        });
+    };
     
     if (false) {}
     
@@ -264,12 +284,21 @@
             });
         });
     }
+  
+    /*-------------*\
+    | | vimeo.com | |
+    \*-------------*/
     
+    else if (domain === 'vimeo.com') {
+        disablePageviewAPI();
+    }
+  
     /*---------------*\
     | | youtube.com | |
     \*---------------*/
     
     else if (domain === 'youtube.com') {
+        disablePageviewAPI();
         // Auto-accept "Are you still watching?" toasts.
         setInterval(() => {
             if (document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer').length >= 1) {
