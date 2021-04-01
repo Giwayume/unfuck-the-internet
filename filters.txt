@@ -101,6 +101,7 @@ pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
 pro-tools-expert.com##.TEXT.TOP_LEFT.DARK.POPUP.sqs-cookie-banner-v2
 pro-tools-expert.com###PopupSignupForm_0
 pushsquare.com##.dgp-consent
+stackoverflow.com##.z-active.ps-fixed:has(.js-unlimited-notice-collapse-button)
 theatlantic.com##.c-nudge__container,.c-non-metered-nudge,.js-inject-promo,.audm--download-cta
 theatlantic.com##body:style(overflow: auto !important; position: static !important)
 thehill.com##.preloaded_lightbox
