@@ -196,6 +196,7 @@ windowsreport.com##.qc-cmp-showing.qc-cmp-ui-container
 ! | Unnecessary Video Overlays Section | !
 ! *------------------------------------* !
 
+animefreak.tv##.jw-skin-animeXD .jw-controlbar::before
 youtube.com##.ytp-cards-teaser-text
 youtube.com##ytd-mealbar-promo-renderer
 youtube.com##.iv-click-target.branding-img
