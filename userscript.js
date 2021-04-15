@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.21
+// @version      1.0.22
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -301,7 +301,7 @@
         }
         document.addEventListener('click', (event) => {
             const target = event.target;
-            if (target.closest('.manga-translator-view')) {
+            if (target.closest('.manga-translator-view, .work-main-image')) {
                 setTimeout(() => {
                     createDownloadButton();
               }, 50);
