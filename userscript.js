@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.18
+// @version      1.0.19
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -31,6 +31,16 @@
         });
         return style;
     };
+  
+    const parseQuery = (queryString) => {
+        var query = {};
+        var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+        for (var i = 0; i < pairs.length; i++) {
+            var pair = pairs[i].split('=');
+            query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+        }
+        return query;
+    }
   
     const onHistoryChange = (callback) => {
         var originalPushState = History.prototype.pushState;
@@ -251,7 +261,51 @@
             });
         });
     }
-  
+
+    /*--------------*\
+    | | piximg.net | |
+    \*--------------*/
+
+    else if (domain === 'pximg.net') {
+        const download = parseQuery(window.location.search).download;
+        if (download) {
+            const link = document.createElement('a');
+            link.download = download.split('/').pop();
+            link.href = download;
+            link.click();
+        }
+    }
+
+    /*-------------*\
+    | | pixiv.net | |
+    \*-------------*/
+
+    else if (domain === 'pixiv.net') {
+        document.body.addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.closest('.manga-translator-view')) {
+                setTimeout(() => {
+                    const zoomControls = document.querySelector('.zoom-controls');
+                    if (zoomControls) {
+                        const downloadButton = document.createElement('a');
+                        downloadButton.style.border = 'none';
+                        downloadButton.style.display = 'inline-block';
+                        downloadButton.style.verticalAlign = 'middle';
+                        downloadButton.style.width = downloadButton.style.height = downloadButton.style.lineHeight = '36px';
+                        downloadButton.style.borderRadius = '300px';
+                        downloadButton.style.backgroundColor = 'rgba(0,0,0,.4)';
+                        downloadButton.style.color = 'white';
+                        downloadButton.innerHTML = '&#11015;';
+                        downloadButton.href = 'https://i.pximg.net?download=' + encodeURIComponent(document.querySelector('.zoomable-area .scaled-image').src);
+                        downloadButton.target = '_blank';
+                        downloadButton.setAttribute('download', 'pixiv.png');
+                        zoomControls.appendChild(downloadButton);
+                    }
+              }, 50);
+            }
+        });
+    }
+
     /*--------------*\
     | | reddit.com | |
     \*--------------*/
