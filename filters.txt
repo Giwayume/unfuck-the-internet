@@ -76,6 +76,7 @@ cjponyparts.com##.modals-overlay
 cjponyparts.com##.modals-wrapper
 dailywire.com##.ub-emb-container
 facebook.com##a[href="/"]
+facebook.com##.__fb-light-mode
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
 futurism.com##.tp-modal-open:style(overflow: auto !important)
