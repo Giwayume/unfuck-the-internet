@@ -188,6 +188,8 @@ forum.yoyogames.com###cookie
 ft.com##.variant-cookieConsentC.cookie-banner
 moduscreate.com###cookie-law-info-bar
 npmjs.com###hs-eu-cookie-confirmation
+news.sky.com##[id*="sp_message_container_"]
+news.sky.com##.sp-message-open:style(overflow: auto !important;)
 nypost.com###web-alerts-modal
 nypost.com##.nyp-sitewide-notice
 theguardian.com###cmpContainer
