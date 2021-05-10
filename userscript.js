@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.22
+// @version      1.0.23
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -359,24 +359,43 @@
     
     else if (domain === 'youtube.com') {
         disablePageviewAPI();
-        // Auto-accept "Are you still watching?" toasts.
-        setInterval(() => {
-            if (document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer').length >= 1) {
-                for (let i = 0; i < document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer').length; i++) {
-                    if (document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer')[i].innerText == "Video paused. Continue watching?") {
-                        document.getElementsByClassName('line-text style-scope yt-confirm-dialog-renderer')[i].parentNode.parentNode.parentNode.querySelector('#confirm-button').click()
+        const yt = {};
+        const config_ = {};
+        const EXPERIMENT_FLAGS = {
+            botguard_async_snapshot_timeout_ms: Infinity,
+            enable_auto_play_param_fix_for_masthead_ad: false,
+            fix_ads_tracking_for_swf_config_deprecation_mweb: false,
+            html5_check_both_ad_active_and_ad_info: false,
+            web_enable_ad_signals_in_it_context: false,
+            web_foreground_heartbeat_interval_ms: Infinity
+        };
+        Object.defineProperty(config_, 'EXPERIMENT_FLAGS', {
+            configurable: false,
+            get() { return EXPERIMENT_FLAGS; },
+            set(flags) {
+                for (let flag in flags) {
+                    if (EXPERIMENT_FLAGS[flag] == null) {
+                        EXPERIMENT_FLAGS[flag] = flags[flag];
                     }
                 }
             }
-            (() => {
-                const toasts = document.querySelectorAll('.toast-button');
-                toasts.forEach((toast) => {
-                    if (toast.textContent.includes('Still watching?')) {
-                        toast.querySelector('paper-button').click();
-                    }
-                });
-            })();
-        }, 10);
+        });
+        Object.defineProperty(yt, 'config_', {
+            configurable: false,
+            get() { return config_ },
+            set() {}
+        });
+        Object.defineProperty(window, 'yt', {
+            configurable: false,
+            writable: false,
+            value: yt
+        });
+        Object.defineProperty(Object.prototype, 'adVideoId', {
+            configurable: false,
+            enumerable: false,
+            get() { return ''; },
+            set() {}
+        });
     }
     
 })();
