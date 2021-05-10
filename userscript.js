@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.23
+// @version      1.0.24
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -390,11 +390,43 @@
             writable: false,
             value: yt
         });
-        Object.defineProperty(Object.prototype, 'adVideoId', {
-            configurable: false,
-            enumerable: false,
-            get() { return ''; },
-            set() {}
+        Object.defineProperties(Object.prototype, {
+            adVideoId: {
+                configurable: false,
+                enumerable: false,
+                get() { return ''; },
+                set() {}
+            },
+            adBreakEndSeconds: {
+                configurable: false,
+                enumerable: false,
+                get() { return null; },
+                set() {}
+            },
+            actionCompanionAdRenderer: {
+                configurable: false,
+                enumerable: false,
+                get() { return {}; },
+                set() {}
+            },
+            adBreakServiceRenderer: {
+                configurable: false,
+                enumerable: false,
+                get() { return {}; },
+                set() {}
+            },
+            adPlacementConfig: {
+                configurable: false,
+                enumerable: false,
+                get() { return {}; },
+                set() {}
+            },
+            ad_docid: {
+                configurable: false,
+                enumerable: false,
+                get() { return ''; },
+                set() {}
+            }
         });
     }
     
