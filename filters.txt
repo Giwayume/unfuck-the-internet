@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.8
+! Version: 1.0.9
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -76,6 +76,8 @@ cjponyparts.com##.modals-overlay
 cjponyparts.com##.modals-wrapper
 dailywire.com##.ub-emb-container
 facebook.com##a[href="/"]
+fixedbyvonnie.com##.tdarkoverlay
+fixedbyvonnie.com##.tbrightcontent
 forbes.com##.sticky-video-placeholder
 foxnews.com##.item-newsletter
 futurism.com##.tp-modal-open:style(overflow: auto !important)
@@ -136,6 +138,7 @@ getdroidtips.com##.adp_interactive_ad
 independent.co.uk###footerPrompt
 independent.co.uk###stickyFooterRoot
 jsfiddle.net###keep-us-running
+kissanime.vin##.entry div[style*="kissanimeplayer.png"]
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 m.imgur.com##.cta-close,.cta-image
 mangahere.cc##.yd-mask
@@ -157,6 +160,8 @@ rule34.xxx###paginator~.horizontalFlexWithMargins
 rule34.xxx##.flexi~.horizontalFlexWithMargins
 rule34.xxx###post-list>.content>a:first-child
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
+tvvideo.xyz##.afs_ads,.ad_skip_hndlr
+tvvideo.xyz##.player_overlay:after:style(display: none !important)
 youtube.com##ytm-promoted-video-renderer
 youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
 m.youtube.com##ytm-promoted-video-renderer
