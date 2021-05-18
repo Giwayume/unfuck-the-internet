@@ -141,6 +141,7 @@ jsfiddle.net###keep-us-running
 kissanime.vin##.entry div[style*="kissanimeplayer.png"]
 kissasian.*##+js(setTimeout-defuser.js, leHzI)
 m.imgur.com##.cta-close,.cta-image
+mangafarm.com##.ad-container
 mangahere.cc##.yd-mask
 mangahere.cc##edShow,.sitemaji_banner
 mangatown.com##[id^="ad_box"]
