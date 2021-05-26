@@ -93,6 +93,7 @@ ideapod.com##.elementor-location-popup.elementor-107576.elementor > .elementor-i
 kissanime.ac###upgrade_pop
 latimes.com###reg-overlay
 mangahere.cc##.reader-win-last,.reader-mask
+mangaeffect.com##.reading-content::before
 mangasco.com##.reading-content:before
 mangatown.com##body>header
 newbernsj.com##.tp-modal-open:style(overflow: auto !important)
