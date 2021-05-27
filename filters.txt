@@ -100,6 +100,7 @@ newbernsj.com##.tp-modal-open:style(overflow: auto !important)
 nhentai.net##.announcement
 nytimes.com##.euiyums4.css-8ksslt,#gateway-content,.css-1bd8bfl
 nytimes.com##.css-mcm29f:style(overflow: auto !important;)
+||code.piano.io/api/tinypass.min.js
 pinterest.*##body:style(overflow:auto!important)
 pinterest.*##[data-test-id="fullPageSignupModal"],[data-test-id="giftWrap"]
 pro-tools-expert.com##.TEXT.TOP_LEFT.DARK.POPUP.sqs-cookie-banner-v2
