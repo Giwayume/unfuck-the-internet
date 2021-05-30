@@ -162,6 +162,7 @@ rule34.xxx###lbot1
 rule34.xxx###paginator~.horizontalFlexWithMargins
 rule34.xxx##.flexi~.horizontalFlexWithMargins
 rule34.xxx###post-list>.content>a:first-child
+rule34.xxx###halloween
 theguardian.com##.contributions__adblock,.contributions__epic,.contributions__highlight
 tvvideo.xyz##.afs_ads,.ad_skip_hndlr
 tvvideo.xyz##.player_overlay:after:style(display: none !important)
