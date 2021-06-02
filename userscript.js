@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.25
+// @version      1.0.26
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -111,6 +111,7 @@
         if (/^[\/]?$/g.test(location.pathname)) {
             location = '/messages/t/';
         }
+        document.documentElement.style.setProperty('--notification-badge', 'transparent');
         document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.style.setProperty('--notification-badge', 'transparent');
         });
