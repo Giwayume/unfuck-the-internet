@@ -147,7 +147,6 @@
           document.addEventListener('DOMContentLoaded', () => {
               document.querySelectorAll('a[href]').forEach((link) => {
                   link.removeAttribute('onmousedown');
-                  link.setAttribute('target', '_blank');
               });
           });
         }
