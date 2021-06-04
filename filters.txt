@@ -151,6 +151,7 @@ news.google.com##.misTTe.Mp2Z0b.Mh0NNb
 static.nhentai.net/js/*
 nhentai.net##.announcement
 nhentai.net##.advertisement
+photofocus.com##.widget_advads_ad_widget
 popsugar.com##.container
 popsugar.com##.background-layer
 readjojolion.com##.pages__ad
