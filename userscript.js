@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.26
+// @version      1.0.27
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -361,6 +361,8 @@
     \*---------------*/
     
     else if (domain === 'youtube.com') {
+        localStorage.clear();
+        sessionStorage.clear();
         disablePageviewAPI();
         const yt = {};
         const config_ = {};
