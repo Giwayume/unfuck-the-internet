@@ -72,6 +72,7 @@ zingbox.me##a[href*=".apk"],a[href*="itunes.apple.com"]
 ##.tp-modal,.tp-backdrop
 
 third-party.animekisa.tv##body>[style*="z-index"]
+bbcnews.com##.tp-modal-open:style(overflow: auto !important;)
 cjponyparts.com##.modals-overlay
 cjponyparts.com##.modals-wrapper
 dailywire.com##.ub-emb-container
