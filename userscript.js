@@ -97,6 +97,10 @@
             configurable: true
         });
     };
+  
+    addCss(`
+    body.tp-modal-open { overflow: auto !important }
+    `);
     
     if (false) {}
     
