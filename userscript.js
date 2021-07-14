@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.27
+// @version      1.0.28
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -96,6 +96,46 @@
             enumerable: true,
             configurable: true
         });
+    };
+  
+        const eventPropertyNames = ['onanimationcancel', 'onanimationend', 'onanimationiteration', 'onanimationstart', 'onauxclick', 'onbeforeinput', 'onblur', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'onclose', 'oncontextmenu', 'oncopy', 'oncuechange', 'oncut', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragexit', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus', 'onformdata', 'ongotpointercapture', 'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata', 'onloadedmetadata', 'onloadend', 'onloadstart', 'onlostpointercapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmozfullscreenchange', 'onmozfullscreenerror', 'onpaste', 'onpause', 'onplay', 'onplaying', 'onpointercancel', 'onpointerdown', 'onpointerenter', 'onpointerleave', 'onpointermove', 'onpointerout', 'onpointerover', 'onpointerup', 'onprogress', 'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeking', 'onselect', 'onselectstart', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'ontransitioncancel', 'ontransitionend', 'ontransitionrun', 'ontransitionstart', 'onvolumechange', 'onwaiting', 'onwebkitanimationend', 'onwebkitanimationiteration' ,'onwebkitanimationstart', 'onwebkittransitionend', 'onwheel'];
+    const purgeEventListeners = (purgeCallback) => {
+        const _addEventListener = EventTarget.prototype.addEventListener;
+        EventTarget.prototype.addEventListener = function addEventListener(type, listener, useCapture) {
+            const originalListenerCode = listener && listener.toString();
+            return _addEventListener.call(this, type, function(e) {
+                const callbackResult = purgeCallback(this, type.toLowerCase(), originalListenerCode, e);
+                if (callbackResult) {
+                    if (callbackResult.preventDefault) {
+                        e.preventDefault();
+                    }
+                    if (callbackResult.stopPropagation) {
+                        e.stopPropagation();
+                    }
+                    if (callbackResult.halt) {
+                       return; 
+                    }
+                }
+                if (listener) {
+                    return listener.apply(this, arguments);
+                }
+            }, useCapture);
+        };
+        let accessModifiers = {};
+        const eventPropertyMap = new WeakMap();
+        for (let propertyName of eventPropertyNames) {
+            accessModifiers[propertyName] = {
+                configurable: true,
+                enumerable: true,
+                get() {
+                    return eventPropertyMap.get(this, callback);
+                },
+                set(callback) {
+                    eventPropertyMap.set(this, callback);
+                }
+            };
+        }
+        // Object.defineProperties(HTMLElement.prototype, accessModifiers);
     };
   
     addCss(`
@@ -230,6 +270,20 @@
                 node.src = node.getAttribute('data-src');
             });
         });
+    }
+  
+    /*---------------*\
+    | | netflix.com | |
+    \*---------------*/
+    
+    else if (domain === 'netflix.com') {
+        window.MessageChannel = undefined;
+        addCss(`
+            .lolomoPreview { display: none !important; }
+            .previewModal--container { transform: none !important; }
+            .previewModal--player_container > div { opacity: 1 !important; }
+            .previewModal--info { transform: none !important; opacity: 1 !important; }
+        `);
     }
     
     /*---------------*\
