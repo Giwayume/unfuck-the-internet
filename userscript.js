@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.28
+// @version      1.0.29
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -17,6 +17,12 @@
     const clearInterval = window.clearInterval;
     
     const domain = window.location.hostname.split('.').slice(-2).join('.');
+  
+    const kebabToCamelCase = (str) => {
+        let arr = str.split('-');
+        let capital = arr.map((item, index) => index ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item.toLowerCase());
+        return capital.join("");
+    }
     
     const addCss = (css) => {
         const style = document.createElement('style');
@@ -30,6 +36,35 @@
             return !!head;
         });
         return style;
+    };
+  
+    const getCssSelectorByStyles = (searchStylesString) => {
+        let matchedSelector = '';
+        const searchStylesSplit = searchStylesString.split(';');
+        let searchRules = {};
+        for (let searchStyleRule of searchStylesSplit) {
+            const ruleSplit = searchStyleRule.split(':');
+            const ruleName = kebabToCamelCase(ruleSplit[0].trim().toLowerCase());
+            if (!ruleName) continue;
+            searchRules[ruleName] = (ruleSplit[1] + '').trim();
+        }
+        for (let stylesheet of [...document.styleSheets]) {
+            for (let rule of stylesheet.cssRules) {
+                if (!rule.style) continue;
+                let isMatchingRule = true;
+                for (let searchRule in searchRules) {
+                    if (rule.style[searchRule] !== searchRules[searchRule]) {
+                        isMatchingRule = false;
+                        break;
+                    }
+                }
+                if (isMatchingRule) {
+                    matchedSelector = rule.selectorText;
+                    break;
+                }
+            }
+        }
+        return matchedSelector;
     };
   
     const parseQuery = (queryString) => {
@@ -379,6 +414,7 @@
   
     else if (domain === 'reddit.com') {
         document.addEventListener('DOMContentLoaded', () => {
+            addCss(`${getCssSelectorByStyles('background-color: var(--newCommunityTheme-button); color: var(--newCommunityTheme-body); position: sticky; z-index: 95;')} { display: none !important; }`);
             document.querySelectorAll('[id*="vote-arrows"] > :not(button) [role="screen-reader"], [data-click-id="comments"] [role="screen-reader"]').forEach((screenReaderNode) => {
                 addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
                 addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
