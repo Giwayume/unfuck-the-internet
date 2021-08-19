@@ -133,6 +133,7 @@ newbernsj.com##aside:has([data-t-pl*="automatedvideoplayer"])
 ! | Adblock Section | !
 ! *-----------------* !
 
+9convert.com##body~iframe
 businessinsider.com##.tp-active.tp-backdrop
 dzone.com###adtoniq-msgr-bar
 facebook.com###pagelet_marketplace_recently_viewed_rhc
