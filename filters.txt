@@ -235,6 +235,7 @@ youtube.com##ytd-thumbnail-overlay-endorsement-renderer
 youtube.com##ytm-watch-metadata-app-promo-renderer
 youtube.com##ytm-paid-content-overlay-renderer
 youtube.com##.ytp-cards-button-icon-default > .ytp-cards-button-icon
+youtube.com##.ytp-ce-element.ytp-ce-playlist
 
 ! *--------------------* !
 ! | Auto-notifications | !
