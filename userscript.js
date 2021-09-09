@@ -442,6 +442,18 @@
         });
     }
   
+    /*-------------------*\
+    | | techlicious.com | |
+    \*-------------------*/
+  
+    else if (domain === 'techlicious.com') {
+        Object.defineProperty(window, 'admrlWpJsonP', {
+            configurable: false,
+            writable: false,
+            value: null
+        });
+    }
+  
     /*-------------*\
     | | vimeo.com | |
     \*-------------*/
