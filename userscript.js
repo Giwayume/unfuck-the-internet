@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.30
+// @version      1.0.31
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -216,6 +216,22 @@
         Object.defineProperty(document, 'onmousedown', { configurable: false, value: null, writable: false });
         Object.defineProperty(document, 'onkeydown', { configurable: false, value: null, writable: false });
         Object.defineProperty(document, 'onselectstart', { configurable: false, value: null, writable: false });
+    }
+  
+    /*----------------*\
+    | | gogoanime.vc | |
+    \*----------------*/
+  
+    else if (domain === 'gogoanime.vc') {
+        window.open = null;
+    }
+  
+    /*--------------*\
+    | | goload.one | |
+    \*--------------*/
+  
+    else if (domain === 'goload.one') {
+        addCss('body ~ div[style*="pointer-events"] { display: none !important; }');
     }
   
     /*--------------*\
