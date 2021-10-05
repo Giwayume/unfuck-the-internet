@@ -232,6 +232,11 @@
   
     else if (domain === 'goload.one') {
         addCss('body ~ div[style*="pointer-events"] { display: none !important; }');
+        purgeEventListeners((target, type, handler, useCapture) => {
+            if (type === 'message') {
+                return { halt: true };
+            }
+        });
     }
   
     /*--------------*\
