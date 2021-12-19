@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.34
+// @version      1.0.35
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -390,7 +390,7 @@
     else if (domain === 'pixiv.net') {
         function createDownloadButton() {
             const zoomControls = document.querySelectorAll('.zoom-controls');
-            for (let zoomControl of ZoomControls) {
+            for (let zoomControl of zoomControls) {
                 if (!zoomControl.querySelector('.download-button')) {
                     const downloadButton = document.createElement('button');
                     downloadButton.classList.add('download-button');
