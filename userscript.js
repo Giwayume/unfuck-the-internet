@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.33
+// @version      1.0.34
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -389,21 +389,24 @@
 
     else if (domain === 'pixiv.net') {
         function createDownloadButton() {
-            const zoomControls = document.querySelector('.zoom-controls');
-            if (zoomControls) {
-                const downloadButton = document.createElement('button');
-                downloadButton.style.border = 'none';
-                downloadButton.style.verticalAlign = 'middle';
-                downloadButton.style.width = downloadButton.style.height = downloadButton.style.lineHeight = '36px';
-                downloadButton.style.borderRadius = '300px';
-                downloadButton.style.backgroundColor = 'rgba(0,0,0,.4)';
-                downloadButton.style.color = 'white';
-                downloadButton.innerHTML = '&#11015;';
-                downloadButton.target = '_blank';
-                downloadButton.onclick = () => {
-                    window.open('https://i.pximg.net?download=' + encodeURIComponent(document.querySelector('.zoomable-area .scaled-image').src), '_blank');
-                };
-                zoomControls.appendChild(downloadButton);
+            const zoomControls = document.querySelectorAll('.zoom-controls');
+            for (let zoomControl of ZoomControls) {
+                if (!zoomControl.querySelector('.download-button')) {
+                    const downloadButton = document.createElement('button');
+                    downloadButton.classList.add('download-button');
+                    downloadButton.style.border = 'none';
+                    downloadButton.style.verticalAlign = 'middle';
+                    downloadButton.style.width = downloadButton.style.height = downloadButton.style.lineHeight = '36px';
+                    downloadButton.style.borderRadius = '300px';
+                    downloadButton.style.backgroundColor = 'rgba(0,0,0,.4)';
+                    downloadButton.style.color = 'white';
+                    downloadButton.innerHTML = '&#11015;';
+                    downloadButton.target = '_blank';
+                    downloadButton.onclick = () => {
+                        window.open('https://i.pximg.net?download=' + encodeURIComponent(document.querySelector('.zoomable-area .scaled-image').src), '_blank');
+                    };
+                    zoomControl.appendChild(downloadButton);
+                }
             }
         }
         document.addEventListener('click', (event) => {
