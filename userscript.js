@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.35
+// @version      1.0.36
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -390,7 +390,9 @@
     else if (domain === 'pixiv.net') {
         function createDownloadButton() {
             const zoomControls = document.querySelectorAll('.zoom-controls');
+            console.log(zoomControls)
             for (let zoomControl of zoomControls) {
+                console.log(zoomControl);
                 if (!zoomControl.querySelector('.download-button')) {
                     const downloadButton = document.createElement('button');
                     downloadButton.classList.add('download-button');
@@ -409,14 +411,16 @@
                 }
             }
         }
-        document.addEventListener('click', (event) => {
-            const target = event.target;
-            if (target.closest('.manga-translator-view, .work-main-image')) {
+        const createDownloadDeferred = (event) => {
+            const target = event.touches ? event.touches[0].target : event.target;
+            if (target.closest('.manga-pages, .manga-translator-view, .work-main-image')) {
                 setTimeout(() => {
                     createDownloadButton();
               }, 50);
             }
-        });
+        };
+        document.addEventListener('mousedown', createDownloadDeferred, true);
+        document.addEventListener('touchstart', createDownloadDeferred, true);
         document.addEventListener('DOMContentLoaded', async () => {
             await waitFor(() => {
                 const zoomControls = document.querySelector('.zoom-controls');
@@ -425,7 +429,7 @@
             createDownloadButton();
         });
     }
-
+    
     /*--------------*\
     | | reddit.com | |
     \*--------------*/
