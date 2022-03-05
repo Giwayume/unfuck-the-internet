@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.38
+// @version      1.0.39
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -133,6 +133,35 @@
         });
     };
   
+    const blockAllPopups = () => {
+        Object.defineProperty(HTMLAnchorElement.prototype, 'target', { configurable: false, writable: false, value: '_self' });
+        const setAttribute = Element.prototype.setAttribute;
+        function strictSetAttribute(name, value) {
+            if ((name || '').toLowerCase() === 'target') return;
+            return setAttribute.apply(this, arguments);
+        };
+        Object.defineProperty(Element.prototype, 'setAttribute', { configurable: false, writable: false, value: strictSetAttribute });
+        const getAttribute = Element.prototype.getAttribute;
+        function strictGetAttribute(name) {
+            if ((name || '').toLowerCase() === 'target') return null;
+            return getAttribute.apply(this, arguments);
+        }
+        Object.defineProperty(Element.prototype, 'getAttribute', { configurable: false, writable: false, value: strictGetAttribute });
+        window.open = function(url) {
+            console.log('Blocked open attempt', url);
+        };
+    };
+  
+    const disableConsoleManipulation = () => {
+        const console = window.console;
+        const noop = function() {};
+        window.console = {
+          assert: noop, clear: noop, count: noop, countReset: noop, debug: noop, dir: noop, dirXml: noop, error: noop, exception: noop, group: noop, groupCollapsed: noop,
+          groupEnd: noop, info: noop, log: noop, profile: noop, profileEnd: noop, table: noop, time: noop, timeEnd: noop, timeLog: noop, timeStamp: noop, trace: noop, warn: noop
+        };
+        return console;
+    };
+  
     const eventPropertyNames = ['onanimationcancel', 'onanimationend', 'onanimationiteration', 'onanimationstart', 'onauxclick', 'onbeforeinput', 'onblur', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'onclose', 'oncontextmenu', 'oncopy', 'oncuechange', 'oncut', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragexit', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus', 'onformdata', 'ongotpointercapture', 'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata', 'onloadedmetadata', 'onloadend', 'onloadstart', 'onlostpointercapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmozfullscreenchange', 'onmozfullscreenerror', 'onpaste', 'onpause', 'onplay', 'onplaying', 'onpointercancel', 'onpointerdown', 'onpointerenter', 'onpointerleave', 'onpointermove', 'onpointerout', 'onpointerover', 'onpointerup', 'onprogress', 'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeking', 'onselect', 'onselectstart', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'ontransitioncancel', 'ontransitionend', 'ontransitionrun', 'ontransitionstart', 'onvolumechange', 'onwaiting', 'onwebkitanimationend', 'onwebkitanimationiteration' ,'onwebkitanimationstart', 'onwebkittransitionend', 'onwheel'];
     const purgeEventListeners = (purgeCallback) => {
         const _addEventListener = EventTarget.prototype.addEventListener;
@@ -222,11 +251,31 @@
     | | gogoanime.vc | |
     \*----------------*/
   
-    else if (domain === 'gogoanime.vc' || domain === 'goload.one' || domain === 'gogoplay2.com' || domain === 'gogoanime.film') {
+    else if (['gogoanime.vc', 'goload.one', 'gogoplay2.com', 'gogoanime.film'].includes(domain)) {
+        const console = disableConsoleManipulation();
         addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
-        window.open = function(url) {
-            console.log('open attempt', url);
-        };
+        blockAllPopups();
+        document.addEventListener('DOMContentLoaded', () => {
+            const cdnList = document.querySelector('.anime_muti_link');
+            cdnList?.querySelectorAll('a[data-video]').forEach(link => {
+                link.addEventListener('click', () => {
+                    const videoLink = link.getAttribute('data-video');
+                    console.log(videoLink);
+                    document.querySelector('.play-video > iframe').src = videoLink;
+                }, true);
+            });
+        });
+    }
+  
+    else if (['gogoplay4.com', 'fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain)) {
+        const console = disableConsoleManipulation();
+        purgeEventListeners((target, event) => {
+            if ((target === window || target === document) && (event === 'mousedown' || event === 'click')) {
+                return { halt: true };
+            }
+        });
+        addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
+        blockAllPopups();
     }
   
     /*--------------*\
