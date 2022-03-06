@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.42
+// @version      1.0.43
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -281,30 +281,30 @@
   
     else if (['gogoplay4.com', 'fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain)) {
         const console = disableConsoleManipulation();
-        const listenerLog = [];
-        const listenerEl = document.createElement('div');
-        listenerEl.style.position = 'absolute';
-        listenerEl.style.top = '0';
-        listenerEl.style.left = '0';
-        listenerEl.style.pointerEvents = 'none';
-        listenerEl.style.textShadow = '1px 1px 1px white';
-        listenerEl.style.fontSize = '8px';
+        // const listenerLog = [];
+        // const listenerEl = document.createElement('div');
+        // listenerEl.style.position = 'absolute';
+        // listenerEl.style.top = '0';
+        // listenerEl.style.left = '0';
+        // listenerEl.style.pointerEvents = 'none';
+        // listenerEl.style.textShadow = '1px 1px 1px white';
+        // listenerEl.style.fontSize = '8px';
         purgeEventListeners((target, event, handler) => {
-            if (event != 'message') {
-                listenerLog.unshift({ target: (target || '').toString(), event });
-                let listenerHTML = `<ul>`;
-                for (const log of listenerLog.slice(0, 50)) {
-                    listenerHTML += `<li>target: ${log.target}, event: ${log.event}</li>`;
-                }
-                listenerEl.innerHTML = listenerHTML + '</ul>';
-            }
-            if ((target === window || target === document) && ['mousedown', 'click'].includes(event)) {
+            // if (event != 'message') {
+            //     listenerLog.unshift({ target: (target || '').toString(), event });
+            //     let listenerHTML = `<ul>`;
+            //     for (const log of listenerLog.slice(0, 50)) {
+            //         listenerHTML += `<li>target: ${log.target}, event: ${log.event}</li>`;
+            //     }
+            //     listenerEl.innerHTML = listenerHTML + '</ul>';
+            // }
+            if ((target === window || target === document) && ['mousedown', 'mouseup', 'click'].includes(event)) {
                 return { halt: true };
             }
         });
-        document.addEventListener('DOMContentLoaded', () => {
-            document.body.appendChild(listenerEl);
-        });
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     document.body.appendChild(listenerEl);
+        // });
         addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
         blockAllPopups();
     }
