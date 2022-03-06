@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.40
+// @version      1.0.41
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -288,6 +288,7 @@
         listenerEl.style.left = '0';
         listenerEl.style.pointerEvents = 'none';
         listenerEl.style.textShadow = '1px 1px 1px white';
+        listenerEl.style.fontSize = '8px';
         purgeEventListeners((target, event, handler) => {
             listenerLog.unshift({ target: (target || '').toString(), event });
             let listenerHTML = `<ul>`;
