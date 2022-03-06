@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.41
+// @version      1.0.42
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -290,12 +290,14 @@
         listenerEl.style.textShadow = '1px 1px 1px white';
         listenerEl.style.fontSize = '8px';
         purgeEventListeners((target, event, handler) => {
-            listenerLog.unshift({ target: (target || '').toString(), event });
-            let listenerHTML = `<ul>`;
-            for (const log of listenerLog.slice(0, 50)) {
-                listenerHTML += `<li>target: ${log.target}, event: ${log.event}</li>`;
+            if (event != 'message') {
+                listenerLog.unshift({ target: (target || '').toString(), event });
+                let listenerHTML = `<ul>`;
+                for (const log of listenerLog.slice(0, 50)) {
+                    listenerHTML += `<li>target: ${log.target}, event: ${log.event}</li>`;
+                }
+                listenerEl.innerHTML = listenerHTML + '</ul>';
             }
-            listenerEl.innerHTML = listenerHTML + '</ul>';
             if ((target === window || target === document) && ['mousedown', 'click'].includes(event)) {
                 return { halt: true };
             }
