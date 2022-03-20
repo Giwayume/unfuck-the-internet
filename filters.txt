@@ -178,6 +178,7 @@ m.youtube.com##ytm-promoted-video-renderer
 vidlii.com##.abb_parent
 
 no-popups: gogoplay4.com true
+no-popups: gogoplay5.com true
 no-popups: fembed-hd.com true
 no-popups: sbplay2.xyz true
 no-popups: dood.ws true
