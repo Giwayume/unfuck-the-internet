@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.45
+// @version      1.0.46
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -279,7 +279,7 @@
         });
     }
   
-    else if ('fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain) || /gogoplay[0-9]{1,4}\.com/.test(domain)) {
+    else if (['fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain) || /gogoplay[0-9]{1,4}\.com/.test(domain)) {
         const console = disableConsoleManipulation();
         purgeEventListeners((target, event, handler) => {
             if ((target === window || target === document) && ['mousedown', 'mouseup', 'click'].includes(event)) {
