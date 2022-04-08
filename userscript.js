@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.46
+// @version      1.0.47
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -263,7 +263,7 @@
     | | gogoanime.vc | |
     \*----------------*/
   
-    else if (['gogoanime.vc', 'goload.one', 'gogoplay2.com', 'gogoanime.film', 'gogoanime.gg'].includes(domain)) {
+    else if (domain.startsWith('gogoanime')) {
         const console = disableConsoleManipulation();
         addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
         blockAllPopups();
@@ -279,7 +279,7 @@
         });
     }
   
-    else if (['fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain) || /gogoplay[0-9]{1,4}\.com/.test(domain)) {
+    else if (['fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain) || /(goload\.|gogoplay[0-9]{1,4}\.com)/.test(domain)) {
         const console = disableConsoleManipulation();
         purgeEventListeners((target, event, handler) => {
             if ((target === window || target === document) && ['mousedown', 'mouseup', 'click'].includes(event)) {
