@@ -524,8 +524,9 @@
     else if (domain === 'reddit.com') {
         disableAddCssRemoval();
         document.addEventListener('DOMContentLoaded', () => {
-            addCss(`._10BQ7pjWbeYP63SAPNS8Ts { display: none !important; }`);
+            addCss(`${getCssSelectorByStyles('background-image: linear-gradient(67.9deg,#5349da 11.74%,#b44ac0 88.14%);')} { display: none !important; }`);
             addCss(`${getCssSelectorByStyles('background-color: rgb(255, 69, 0)')} { display: none !important; }`);
+            addCss(`._3hna43Sh0DTnoV7v2NNc2r { display: none !important; }`);
             addCss(`#COIN_PURCHASE_DROPDOWN_ID { display: none !important; }`);
             addCss(`${getCssSelectorByStyles('background-color: var(--newCommunityTheme-button); color: var(--newCommunityTheme-body); position: sticky; z-index: 95;')} { display: none !important; }`);
             document.querySelectorAll('[id*="vote-arrows"] > :not(button) [role="screen-reader"], [data-click-id="comments"] [role="screen-reader"]').forEach((screenReaderNode) => {
