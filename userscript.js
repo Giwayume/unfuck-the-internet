@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.48
+// @version      1.0.49
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -24,6 +24,7 @@
         return capital.join("");
     }
     
+    const createdStyles = [];
     const addCss = (css) => {
         const style = document.createElement('style');
         style.type = 'text/css';
@@ -35,6 +36,7 @@
             }
             return !!head;
         });
+        createdStyles.push(style);
         return style;
     };
   
@@ -160,6 +162,30 @@
           groupEnd: noop, info: noop, log: noop, profile: noop, profileEnd: noop, table: noop, time: noop, timeEnd: noop, timeLog: noop, timeStamp: noop, trace: noop, warn: noop
         };
         return console;
+    };
+  
+    const disableAddCssRemoval = () => {
+        const _removeChild = Node.prototype.removeChild;
+        Node.prototype.removeChild = function removeChild(child) {
+            if (createdStyles.includes(child)) {
+                return;
+            }
+            return _removeChild.call(this, child);
+        };
+        const _replaceChild = Node.prototype.replaceChild;
+        Node.prototype.replaceChild = function replaceChild(newChild, oldChild) {
+            if (createdStyles.includes(oldChild)) {
+                return;
+            }
+            return _replaceChild.call(this, newChild, oldChild);
+        };
+        const _remove = Element.prototype.remove;
+        Element.prototype.remove = function remove(child) {
+            if (createdStyles.includes(self)) {
+                return document.createElement('style');
+            }
+            return _remove.call(this);
+        };
     };
   
     const eventPropertyNames = ['onanimationcancel', 'onanimationend', 'onanimationiteration', 'onanimationstart', 'onauxclick', 'onbeforeinput', 'onblur', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'onclose', 'oncontextmenu', 'oncopy', 'oncuechange', 'oncut', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragexit', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus', 'onformdata', 'ongotpointercapture', 'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata', 'onloadedmetadata', 'onloadend', 'onloadstart', 'onlostpointercapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmozfullscreenchange', 'onmozfullscreenerror', 'onpaste', 'onpause', 'onplay', 'onplaying', 'onpointercancel', 'onpointerdown', 'onpointerenter', 'onpointerleave', 'onpointermove', 'onpointerout', 'onpointerover', 'onpointerup', 'onprogress', 'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeking', 'onselect', 'onselectstart', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'ontransitioncancel', 'ontransitionend', 'ontransitionrun', 'ontransitionstart', 'onvolumechange', 'onwaiting', 'onwebkitanimationend', 'onwebkitanimationiteration' ,'onwebkitanimationstart', 'onwebkittransitionend', 'onwheel'];
@@ -496,6 +522,7 @@
     \*--------------*/
   
     else if (domain === 'reddit.com') {
+        disableAddCssRemoval();
         document.addEventListener('DOMContentLoaded', () => {
             addCss(`._10BQ7pjWbeYP63SAPNS8Ts { display: none !important; }`);
             addCss(`${getCssSelectorByStyles('background-color: rgb(255, 69, 0)')} { display: none !important; }`);
