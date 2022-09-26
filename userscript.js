@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.47
+// @version      1.0.48
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -497,6 +497,7 @@
   
     else if (domain === 'reddit.com') {
         document.addEventListener('DOMContentLoaded', () => {
+            addCss(`._10BQ7pjWbeYP63SAPNS8Ts { display: none !important; }`);
             addCss(`${getCssSelectorByStyles('background-color: rgb(255, 69, 0)')} { display: none !important; }`);
             addCss(`#COIN_PURCHASE_DROPDOWN_ID { display: none !important; }`);
             addCss(`${getCssSelectorByStyles('background-color: var(--newCommunityTheme-button); color: var(--newCommunityTheme-body); position: sticky; z-index: 95;')} { display: none !important; }`);
@@ -504,6 +505,7 @@
                 addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
                 addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
             });
+            
         });
     }
   
