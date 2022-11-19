@@ -29,14 +29,18 @@
         const style = document.createElement('style');
         style.type = 'text/css';
         style.innerHTML = css;
-        waitFor(() => {
-            const head = document.querySelector('head');
-            if (head) {
-                head.appendChild(style);
-            }
-            return !!head;
-        });
         createdStyles.push(style);
+        if (document.head != null) {
+            document.head.appendChild(style);
+        } else {
+            waitFor(() => {
+                const head = document.querySelector('head');
+                if (head) {
+                    head.appendChild(style);
+                }
+                return !!head;
+            });
+        }
         return style;
     };
   
@@ -46,24 +50,32 @@
         let searchRules = {};
         for (let searchStyleRule of searchStylesSplit) {
             const ruleSplit = searchStyleRule.split(':');
-            const ruleName = kebabToCamelCase(ruleSplit[0].trim().toLowerCase());
+            const ruleName = ruleSplit[0].trim().toLowerCase();
             if (!ruleName) continue;
-            searchRules[ruleName] = (ruleSplit[1] + '').trim();
+            const ruleValue = (ruleSplit[1] + '').trim();
+            searchRules[ruleName] = ruleValue;
+            searchRules[kebabToCamelCase(ruleName)] = ruleValue;
+            
         }
         for (let stylesheet of [...document.styleSheets]) {
-            for (let rule of stylesheet.cssRules) {
-                if (!rule.style) continue;
-                let isMatchingRule = true;
-                for (let searchRule in searchRules) {
-                    if (rule.style[searchRule] !== searchRules[searchRule]) {
-                        isMatchingRule = false;
+            try {
+                for (let rule of stylesheet.cssRules) {
+                    if (!rule.style) continue;
+                    console.log(rule.selectorText);
+                    let isMatchingRule = true;
+                    for (let searchRule in searchRules) {
+                        if (rule.style[searchRule] !== searchRules[searchRule]) {
+                            isMatchingRule = false;
+                            break;
+                        }
+                    }
+                    if (isMatchingRule) {
+                        matchedSelector = rule.selectorText;
                         break;
                     }
                 }
-                if (isMatchingRule) {
-                    matchedSelector = rule.selectorText;
-                    break;
-                }
+            } catch (error) {
+                // Could be cross origin error, ignore.
             }
         }
         return matchedSelector;
@@ -152,6 +164,38 @@
         window.open = function(url) {
             console.log('Blocked open attempt', url);
         };
+    };
+  
+    let entireTreeMutationObserver = null;
+    const entireTreeMutationObserverCallbacks = [];
+    const blockInjectedNodes = (blockDefinition = {}) => {
+        if (entireTreeMutationObserver == null) {
+            entireTreeMutationObserver = new MutationObserver((mutationList, observer) => {
+                for (callback of entireTreeMutationObserverCallbacks) {
+                    callback(mutationList, observer);
+                }
+            });
+            entireTreeMutationObserver.observe(document.documentElement, { attributes: false, childList: true, subtree: true });
+        }
+        if (blockDefinition.blockContent) {
+            let blockContent = blockDefinition.blockContent;
+            if (Object.prototype.toString.call(blockContent) !== '[object Array]') {
+                blockContent = [blockContent];
+            }
+            entireTreeMutationObserverCallbacks.push((mutationList) => {
+                for (mutation of mutationList) {
+                    if (mutation.addedNodes) {
+                        for (node of mutation.addedNodes) {
+                            for (blockContentString of blockContent) {
+                                if ((node.textContent || '').includes(blockContentString)) {
+                                    node.remove();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
     };
   
     const disableConsoleManipulation = () => {
@@ -566,6 +610,22 @@
             configurable: false,
             writable: false,
             value: null
+        });
+    }
+  
+    /*---------------*\
+    | | twitter.com | |
+    \*---------------*/
+    
+    else if (domain === 'twitter.com') {
+        disableAddCssRemoval();
+        blockInjectedNodes({
+            blockContent: ['See more Tweets from']
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            addCss('[data-testid="BottomBar"] { display: none !important; }');
+            addCss('iframe[title*="Sign in with Google Dialog"] { display: none !important; }');
+            addCss('html { overflow: unset !important; overscroll-behavior-y: unset !important; font-size: unset !important; margin-right: unset !important; }');
         });
     }
   
