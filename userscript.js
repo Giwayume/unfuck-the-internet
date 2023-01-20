@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.51
+// @version      1.0.52
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -289,6 +289,17 @@
     `);
     
     if (false) {}
+  
+    /*-------------*\
+    | | chess.com | |
+    \*-------------*/
+  
+    else if (domain === 'chess.com') {
+        addCss(`
+            chess-board .hint[data-invalid], chess-board .capture-hint[data-invalid] { background-color: rgba(199, 66, 66, 0.56); }
+            chess-board .piece[data-invalid] { filter: drop-shadow(5px 5px 0 red); }
+        `),window.addEventListener("DOMContentLoaded",()=>{let e=null,_=setInterval(()=>{((e=document.querySelector("chess-board")||document.createElement("div")).querySelector(".piece.square-11")?.classList.contains("wr")||e.querySelector(".piece.square-11")?.classList.contains("br"))&&(clearInterval(_),setTimeout(()=>{t()},500))},100);function t(){let _=e.querySelector(".piece.square-11")?.classList.contains("wr")?"w":"b",t=["wp","wr","wn","wb","wq","wk","bp","br","bn","bb","bq","bk"],r=[[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],],i=!1,n=null;function l(){let t=r,l=!1;r=[[!1,!1,!1,!1,!1,!1,!1,!1]];let a=[];for(let u=1;u<=8;u++){let o=[!1];for(let s=1;s<=8;s++){let c=e.querySelector(".piece.square-"+s+u);c&&a.push({element:c,coordinate:{x:s,y:u}}),!!c!==t[u][s]&&(l=!0),o.push(!!c)}r.push(o)}if(l){for(let f of a){let{team:b}=d(f.element);b===_&&y(f.coordinate)?f.element.setAttribute("data-invalid",!0):f.element.removeAttribute("data-invalid")}i=!0,clearTimeout(n),n=setTimeout(()=>{i=!1},400)}}function a(e,_,t){return 1===Math.abs(e.x-_.x)&&e.y+t===_.y}function u(e,_){if(e.x===_.x){if(e.y>_.y)for(let t=e.y-1;t>=1;t--){if(t===_.y)return!0;if(r[t][e.x])break}else if(e.y<_.y)for(let i=e.y+1;i<=8;i++){if(i===_.y)return!0;if(r[i][e.x])break}}else if(e.y===_.y){if(e.x>_.x)for(let n=e.x-1;n>=1;n--){if(n===_.x)return!0;if(r[e.y][n])break}else if(e.x<_.x)for(let l=e.x+1;l<=8;l++){if(l===_.x)return!0;if(r[e.y][l])break}}return!1}function o(e,_){return 1===Math.abs(e.x-_.x)&&2===Math.abs(e.y-_.y)||2===Math.abs(e.x-_.x)&&1===Math.abs(e.y-_.y)}function s(e,_){let t=e.x<_.x?1:-1,i=e.y<_.y?1:-1;for(let n=e.x+t,l=e.y+i;n>=1&&n<=8&&l>=1&&l<=8;){if(n===_.x&&l===_.y)return!0;if(r[l][n])break;n+=t,l+=i}return!1}function c(e,_){return u(e,_)||s(e,_)}function f(e,_){return!!(1>=Math.abs(e.x-_.x)&&1>=Math.abs(e.y-_.y))}function b(e){if(!e)return{x:0,y:0};{let _=e.className,t=_.indexOf("square-")+7,r=_.slice(t,t+2);return{x:parseInt(r[0],10),y:parseInt(r[1],10)}}}function d(e){let _="",r="";for(let i of e.classList)t.includes(i)&&(_=i[0],r=i[1]);return{team:_,type:r}}function y(t){let r=e.querySelectorAll(".piece");for(let i of r){let{team:n,type:l}=d(i),y=b(i);if(n!=_&&("p"===l&&a(y,t,n===_?1:-1)||"r"===l&&u(y,t)||"n"===l&&o(y,t)||"b"===l&&s(y,t)||"q"===l&&c(y,t)||"k"===l&&f(y,t)))return!0}return!1}let x=null,$=new MutationObserver((e,_)=>{clearTimeout(x),x=setTimeout(()=>{i?i=!1:l()},10)});$.observe(e,{attributes:!0,childList:!0,subtree:!0}),e.parentNode.addEventListener("click",()=>{setTimeout(()=>{let _=b(e.querySelector(".hover-square")),t=e.querySelectorAll(".hint, .capture-hint, .piece.square-"+_.x+_.y);for(let r of t){let i=b(r);!0===y(i)?r.setAttribute("data-invalid",!0):r.removeAttribute("data-invalid")}},1)}),l()}});
+    }
     
     /*----------------*\
     | | facebook.com | |
