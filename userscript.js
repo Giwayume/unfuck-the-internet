@@ -666,75 +666,10 @@
         localStorage.clear();
         sessionStorage.clear();
         disablePageviewAPI();
-        const yt = {};
-        const config_ = {};
-        const EXPERIMENT_FLAGS = {
-            botguard_async_snapshot_timeout_ms: Infinity,
-            enable_auto_play_param_fix_for_masthead_ad: false,
-            fix_ads_tracking_for_swf_config_deprecation_mweb: false,
-            html5_check_both_ad_active_and_ad_info: false,
-            web_enable_ad_signals_in_it_context: false,
-            web_foreground_heartbeat_interval_ms: Infinity
-        };
-        Object.defineProperty(config_, 'EXPERIMENT_FLAGS', {
-            configurable: false,
-            get() { return EXPERIMENT_FLAGS; },
-            set(flags) {
-                for (let flag in flags) {
-                    if (EXPERIMENT_FLAGS[flag] == null) {
-                        EXPERIMENT_FLAGS[flag] = flags[flag];
-                    }
-                }
-            }
-        });
-        Object.defineProperty(yt, 'config_', {
-            configurable: false,
-            get() { return config_ },
-            set() {}
-        });
-        Object.defineProperty(window, 'yt', {
-            configurable: false,
-            writable: false,
-            value: yt
-        });
-        Object.defineProperties(Object.prototype, {
-            adVideoId: {
-                configurable: false,
-                enumerable: false,
-                get() { return ''; },
-                set() {}
-            },
-            adBreakEndSeconds: {
-                configurable: false,
-                enumerable: false,
-                get() { return null; },
-                set() {}
-            },
-            actionCompanionAdRenderer: {
-                configurable: false,
-                enumerable: false,
-                get() { return {}; },
-                set() {}
-            },
-            adBreakServiceRenderer: {
-                configurable: false,
-                enumerable: false,
-                get() { return {}; },
-                set() {}
-            },
-            adPlacementConfig: {
-                configurable: false,
-                enumerable: false,
-                get() { return {}; },
-                set() {}
-            },
-            ad_docid: {
-                configurable: false,
-                enumerable: false,
-                get() { return ''; },
-                set() {}
-            }
-        });
+        addCss(`
+            ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
+            .ytd-rich-item-renderer { flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
+        `);
     }
     
 })();
