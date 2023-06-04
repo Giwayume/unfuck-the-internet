@@ -175,6 +175,7 @@ tvvideo.xyz##.afs_ads,.ad_skip_hndlr
 tvvideo.xyz##.player_overlay:after:style(display: none !important)
 youtube.com##ytm-promoted-video-renderer
 youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
+youtube.com##ytd-statement-banner-renderer
 m.youtube.com##ytm-promoted-video-renderer
 vidlii.com##.abb_parent
 
