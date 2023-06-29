@@ -38,8 +38,10 @@ Installing the filter list will solve most problems, but don't forget to also in
 
 1. Install a userscript extension like [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
 2. Add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
+3. Open about:config, and enable the preference `layout.css.has-selector.enabled`
 
 ### Firefox (Mobile)
 
 1. Firefox mobile has made an unfortunate decision to treat extensions with a walled garden approach, following Chrome's lead. At least for now, you can install a userscript extension like [Violentmonkey](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/) by hacking your way around the problem, but only in [Firefox Nightly version](https://play.google.com/store/apps/details?id=org.mozilla.fenix&hl=en_US&gl=US). Follow this article's instructions: https://blog.mozilla.org/addons/2020/09/29/expanded-extension-support-in-firefox-for-android-nightly/
 2. After the userscript extension is installed, add a new userscript from this URL: https://raw.githubusercontent.com/Giwayume/unfuck-the-internet/master/userscript.js
+3. Open about:config, and enable the preference `layout.css.has-selector.enabled`
