@@ -669,7 +669,7 @@
         addCss(`
             ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
             .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
-            .ytd-rich-item-renderer:has(ytd-ad-slot-renderer) { display: none !important; }
+            .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
         `);
     }
     
