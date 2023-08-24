@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.56
+// @version      1.0.57
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -607,7 +607,7 @@
     \*--------------*/
   
     else if (domain === 'rule34.xxx') {
-        addCss(`#image { max-width: 100%; height: auto; } .thumb { width: 200px; height: 200px; }`);
+        addCss(`#image { max-width: 100%; height: auto; } .thumb { width: 200px; height: 200px; } html,body,#content,#post-view,.content { overflow: visible !important; }`);
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.thumb a').forEach(link => {
                 link.target = '_blank';
