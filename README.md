@@ -1,6 +1,8 @@
 # Unfuck the Internet
 This is my personal Ublock Origin filter list to remove annoying things that get past other adblock filters.
 
+**Note: this may break websites in ways that are undesirable to you, but desirable for me. This is my personal list, after all.**
+
 1. I don't like mobile websites bugging me to install their mobile app
 2. I don't like videos in news sites that pop out and stick to the screen
 3. I don't like "subscribe to my email list" and other similar popups
