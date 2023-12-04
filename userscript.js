@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.57
+// @version      1.0.58
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -105,6 +105,22 @@
         window.addEventListener('popstate', (event) => {
             callback('pop', event);
         });
+    }
+    
+    const deleteAllCookies = () => {
+        const cookies = document.cookie.split(";");
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    }
+    
+    const deleteAllIndexedDbDatabases = () => {
+        const dbs = await window.indexedDB.databases()
+        dbs.forEach(db => { window.indexedDB.deleteDatabase(db.name) })
     }
     
     const waitIntervals = [];
@@ -301,7 +317,7 @@
         `),window.addEventListener("DOMContentLoaded",()=>{let _=null,e=setInterval(()=>{((_=document.querySelector("chess-board")||document.createElement("div")).querySelector(".piece.square-11")?.classList.contains("wr")||_.querySelector(".piece.square-11")?.classList.contains("br"))&&(clearInterval(e),setTimeout(()=>{t()},500))},100);function t(){let e=_.querySelector(".piece.square-11")?.classList.contains("wr")?"w":"b",t=["wp","wr","wn","wb","wq","wk","bp","br","bn","bb","bq","bk"],r=[[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],],i=[[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!0,!0,!0,!0,!0,!0,!0],],n=!1,l=null;function a(){let t=r,a=!1,s=!0;r=[[!1,!1,!1,!1,!1,!1,!1,!1]];let o=[];for(let u=1;u<=8;u++){let $=[!1];for(let c=1;c<=8;c++){let f=_.querySelector(".piece.square-"+c+u);f&&o.push({element:f,coordinate:{x:c,y:u}}),!!f!==t[u][c]&&(a=!0),!!f!==i[u][c]&&(s=!1),$.push(!!f)}r.push($)}if(a){for(let b of(s&&(e=(_=document.querySelector("chess-board")||document.createElement("div")).querySelector(".piece.square-11")?.classList.contains("wr")?"w":"b"),o)){let{team:x}=d(b.element);x===e&&y(b.coordinate)?b.element.setAttribute("data-invalid",!0):b.element.removeAttribute("data-invalid")}n=!0,clearTimeout(l),l=setTimeout(()=>{n=!1},400)}}function s(_,e,t){return 1===Math.abs(_.x-e.x)&&_.y+t===e.y}function o(_,e){if(_.x===e.x){if(_.y>e.y)for(let t=_.y-1;t>=1;t--){if(t===e.y)return!0;if(r[t][_.x])break}else if(_.y<e.y)for(let i=_.y+1;i<=8;i++){if(i===e.y)return!0;if(r[i][_.x])break}}else if(_.y===e.y){if(_.x>e.x)for(let n=_.x-1;n>=1;n--){if(n===e.x)return!0;if(r[_.y][n])break}else if(_.x<e.x)for(let l=_.x+1;l<=8;l++){if(l===e.x)return!0;if(r[_.y][l])break}}return!1}function u(_,e){return 1===Math.abs(_.x-e.x)&&2===Math.abs(_.y-e.y)||2===Math.abs(_.x-e.x)&&1===Math.abs(_.y-e.y)}function $(_,e){let t=_.x<e.x?1:-1,i=_.y<e.y?1:-1;for(let n=_.x+t,l=_.y+i;n>=1&&n<=8&&l>=1&&l<=8;){if(n===e.x&&l===e.y)return!0;if(r[l][n])break;n+=t,l+=i}return!1}function c(_,e){return o(_,e)||$(_,e)}function f(_,e){return!!(1>=Math.abs(_.x-e.x)&&1>=Math.abs(_.y-e.y))}function b(_){if(!_)return{x:0,y:0};{let e=_.className,t=e.indexOf("square-")+7,r=e.slice(t,t+2);return{x:parseInt(r[0],10),y:parseInt(r[1],10)}}}function d(_){let e="",r="";for(let i of _.classList)t.includes(i)&&(e=i[0],r=i[1]);return{team:e,type:r}}function y(t){let r=_.querySelectorAll(".piece");for(let i of r){let{team:n,type:l}=d(i),a=b(i);if(n!=e&&("p"===l&&s(a,t,n===e?1:-1)||"r"===l&&o(a,t)||"n"===l&&u(a,t)||"b"===l&&$(a,t)||"q"===l&&c(a,t)||"k"===l&&f(a,t)))return!0}return!1}let x=null,q=new MutationObserver((_,e)=>{clearTimeout(x),x=setTimeout(()=>{n?n=!1:a()},10)});q.observe(_,{attributes:!0,childList:!0,subtree:!0}),_.parentNode.addEventListener("click",()=>{setTimeout(()=>{let e=b(_.querySelector(".hover-square")),t=_.querySelectorAll(".hint, .capture-hint, .piece.square-"+e.x+e.y);for(let r of t){let i=b(r);!0===y(i)?r.setAttribute("data-invalid",!0):r.removeAttribute("data-invalid")}},1)}),a()}});
     }
   
-    /*-------------------------*\
+    /*------------------------*\
     | | docs.godotengine.org | |
     \*------------------------*/
     
@@ -670,7 +686,14 @@
             ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
             .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
             .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
+            .yt-mealbar-promo-renderer-content { display: none !important; }
         `);
+        setInterval(() => {
+            sessionStorage.clear();
+            localStorage.clear();
+            deleteAllCookies();
+            deleteAllIndexedDbDatabases()
+        }, 2000);
     }
     
 })();
