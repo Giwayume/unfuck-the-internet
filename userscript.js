@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.61
+// @version      1.0.62
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -725,9 +725,9 @@
                 if (hasSetQuality) return;
                 qualityButton = document.querySelector('ytm-select.player-quality-settings');
                 var select = qualityButton.querySelector('select');
-                select.value = '480';
-                select.value = 'hd720';
-                select.value = 'hd1080';
+                if (select.querySelector('option[value="hd1080"]') select.value = 'hd1080';
+                else if (select.querySelector('option[value="hd720"]') select.value = 'hd720';
+                else if (select.querySelector('option[value="480"]') select.value = '480';
                 var event = new Event('change', { bubbles: true, cancelable: false });
                 Object.defineProperty(event, 'target', { writable: false, value: select });
                 select.dispatchEvent(event);
