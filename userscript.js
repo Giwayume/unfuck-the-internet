@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.60
+// @version      1.0.61
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -686,8 +686,10 @@
         .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
         .yt-mealbar-promo-renderer-content { display: none !important; }
         `);
+      
+        const isMobile = window.location.host.includes('m.youtube.com');
 
-        if (!window.location.host.includes('m.youtube.com')) {
+        if (!isMobile) {
             localStorage.clear();
             sessionStorage.clear();
             setInterval(() => {
@@ -700,22 +702,57 @@
 
         // Enforce high default quality settings
 
-        function selectQuality(qualityButton) {
+        var hasSetQuality = false;
+      
+        async function selectQuality(qualityButton) {
             // click the settings button on the video
             qualityButton.click();
-            // get all menu items
-            var menuItems = document.querySelectorAll('.ytp-settings-menu .ytp-panel .ytp-menuitem');
-            // click quality menu (last element as of 11/7/21)
-            menuItems[menuItems.length-1].click();
-            // click first element (highest quality in quality menu)
-            for (let element of document.querySelectorAll('.ytp-settings-menu .ytp-panel.ytp-quality-menu .ytp-menuitem')) {
-                if (element.textContent.includes("Premium") || element.textContent.includes("4320p") || element.textContent.includes("2160p") || element.textContent.includes("1440")) continue;
-                element.click();
-                break;
+            if (isMobile) {
+                await new Promise((resolve, reject) => {
+                    var checkInterval = setInterval(() => {
+                        var modalQualityButton = document.querySelector('ytm-select.player-quality-settings');
+                        if (hasSetQuality) {
+                            reject();
+                            clearInterval(checkInterval);
+                        }
+                        if (modalQualityButton) {
+                            qualityButton = modalQualityButton;
+                            resolve();
+                            clearInterval(checkInterval);
+                        }
+                    }, 50);
+                });
+                if (hasSetQuality) return;
+                qualityButton = document.querySelector('ytm-select.player-quality-settings');
+                var select = qualityButton.querySelector('select');
+                select.value = '480';
+                select.value = 'hd720';
+                select.value = 'hd1080';
+                var event = new Event('change', { bubbles: true, cancelable: false });
+                Object.defineProperty(event, 'target', { writable: false, value: select });
+                select.dispatchEvent(event);
+                select.closest('dialog').querySelector('.dialog-buttons button').click();
+                hasSetQuality = true;
+                console.log('Quality set');
+            } else {
+                // get all menu items
+                var menuItems = document.querySelectorAll('.ytp-settings-menu .ytp-panel .ytp-menuitem');
+                // click quality menu (last element as of 11/7/21)
+                menuItems[menuItems.length-1].click();
+                // click first element (highest quality in quality menu)
+                for (let element of document.querySelectorAll('.ytp-settings-menu .ytp-panel.ytp-quality-menu .ytp-menuitem')) {
+                    if (element.textContent.includes("Premium") || element.textContent.includes("4320p") || element.textContent.includes("2160p") || element.textContent.includes("1440")) continue;
+                    element.click();
+                    break;
+                }
             }
         }
 
-        qualityButton = document.querySelector('.ytp-settings-button');
+        if (isMobile) {
+            qualityButton = document.querySelector('.icon-button.player-settings-icon');
+        } else {
+            qualityButton = document.querySelector('.ytp-settings-button');
+        }
         if ((qualityButton !== null) && (qualityButton !== undefined)) {
             console.log('[YT MAX QUALITY] Found quality button without watching for mutations, excellent news.');
             selectQuality(qualityButton);
@@ -729,11 +766,17 @@
                             console.log('[YT MAX QUALITY] Found quality button in node, disconnecting observer.')
                             observer.disconnect();
                         } else {
-                            var qualityButtons = node.getElementsByClassName('ytp-settings-button');
+                            var qualityButtons = [];
+                            if (isMobile) {
+                                qualityButtons = document.querySelectorAll('.icon-button.player-settings-icon');
+                            } else {
+                                var qualityButtons = node.getElementsByClassName('ytp-settings-button');
+                            }
                             if (qualityButtons[0] !== undefined) {
                                 selectQuality(qualityButtons[0]);
                                 console.log('[YT MAX QUALITY] Found quality button in children, disconnecting observer.')
                                 observer.disconnect();
+                                return;
                             }
                         }
                     }
