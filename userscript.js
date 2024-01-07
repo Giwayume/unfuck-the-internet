@@ -679,8 +679,6 @@
     \*---------------*/
     
     else if (domain === 'youtube.com') {
-        localStorage.clear();
-        sessionStorage.clear();
         disablePageviewAPI();
         addCss(`
         ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
@@ -688,12 +686,17 @@
         .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
         .yt-mealbar-promo-renderer-content { display: none !important; }
         `);
-        setInterval(() => {
-            sessionStorage.clear();
+
+        if (!window.location.host.includes('m.youtube.com')) {
             localStorage.clear();
-            deleteAllCookies();
-            deleteAllIndexedDbDatabases()
-        }, 2000);
+            sessionStorage.clear();
+            setInterval(() => {
+                sessionStorage.clear();
+                localStorage.clear();
+                deleteAllCookies();
+                deleteAllIndexedDbDatabases()
+            }, 2000);
+        }
         
         // Enforce high default quality settings
         
