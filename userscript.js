@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.59
+// @version      1.0.60
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -10,20 +10,20 @@
 // ==/UserScript==
 
 (function() {
-    
+
     // Websites sometimes mess with these, save them.
     const setInterval = window.setInterval;
     const setTimeout = window.setTimeout;
     const clearInterval = window.clearInterval;
-    
+
     const domain = window.location.hostname.split('.').slice(-2).join('.');
-    
+
     const kebabToCamelCase = (str) => {
         let arr = str.split('-');
         let capital = arr.map((item, index) => index ? item.charAt(0).toUpperCase() + item.slice(1).toLowerCase() : item.toLowerCase());
         return capital.join("");
     }
-    
+
     const createdStyles = [];
     const addCss = (css) => {
         const style = document.createElement('style');
@@ -43,7 +43,7 @@
         }
         return style;
     };
-    
+
     const getCssSelectorByStyles = (searchStylesString) => {
         let matchedSelector = '';
         const searchStylesSplit = searchStylesString.split(';');
@@ -55,7 +55,7 @@
             const ruleValue = (ruleSplit[1] + '').trim();
             searchRules[ruleName] = ruleValue;
             searchRules[kebabToCamelCase(ruleName)] = ruleValue;
-            
+
         }
         for (let stylesheet of [...document.styleSheets]) {
             try {
@@ -80,7 +80,7 @@
         }
         return matchedSelector;
     };
-    
+
     const parseQuery = (queryString) => {
         var query = {};
         var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
@@ -90,7 +90,7 @@
         }
         return query;
     }
-    
+
     const onHistoryChange = (callback) => {
         var originalPushState = History.prototype.pushState;
         var originalReplaceState = History.prototype.replaceState;
@@ -106,10 +106,10 @@
             callback('pop', event);
         });
     }
-    
+
     const deleteAllCookies = () => {
         const cookies = document.cookie.split(";");
-        
+
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i];
             const eqPos = cookie.indexOf("=");
@@ -117,12 +117,12 @@
             document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
     }
-    
+
     const deleteAllIndexedDbDatabases = async () => {
-        const dbs = await window.indexedDB.databases()
-        dbs.forEach(db => { window.indexedDB.deleteDatabase(db.name) })
+        // const dbs = await window.indexedDB.databases()
+        // dbs.forEach(db => { window.indexedDB.deleteDatabase(db.name) })
     }
-    
+
     const waitIntervals = [];
     const waitFor = (conditionCheck, timeout) => {
         return new Promise((resolve, reject) => {
@@ -142,7 +142,7 @@
             }, timeout || 5000);
         });
     };
-    
+
     const disablePageviewAPI = () => {
         document.addEventListener("visibilitychange", function(e) {
             e.stopImmediatePropagation();
@@ -162,7 +162,7 @@
             configurable: true
         });
     };
-    
+
     const blockAllPopups = () => {
         Object.defineProperty(HTMLAnchorElement.prototype, 'target', { configurable: false, writable: false, value: '_self' });
         const setAttribute = Element.prototype.setAttribute;
@@ -181,7 +181,7 @@
             console.log('Blocked open attempt', url);
         };
     };
-    
+
     let entireTreeMutationObserver = null;
     const entireTreeMutationObserverCallbacks = [];
     const blockInjectedNodes = (blockDefinition = {}) => {
@@ -213,7 +213,7 @@
             });
         }
     };
-    
+
     const disableConsoleManipulation = () => {
         const console = window.console;
         const noop = function() {};
@@ -223,7 +223,7 @@
         };
         return console;
     };
-    
+
     const disableAddCssRemoval = () => {
         const _removeChild = Node.prototype.removeChild;
         Node.prototype.removeChild = function removeChild(child) {
@@ -247,7 +247,7 @@
             return _remove.call(this);
         };
     };
-    
+
     const eventPropertyNames = ['onanimationcancel', 'onanimationend', 'onanimationiteration', 'onanimationstart', 'onauxclick', 'onbeforeinput', 'onblur', 'oncanplay', 'oncanplaythrough', 'onchange', 'onclick', 'onclose', 'oncontextmenu', 'oncopy', 'oncuechange', 'oncut', 'ondblclick', 'ondrag', 'ondragend', 'ondragenter', 'ondragexit', 'ondragleave', 'ondragover', 'ondragstart', 'ondrop', 'ondurationchange', 'onemptied', 'onended', 'onerror', 'onfocus', 'onformdata', 'ongotpointercapture', 'oninput', 'oninvalid', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onloadeddata', 'onloadedmetadata', 'onloadend', 'onloadstart', 'onlostpointercapture', 'onmousedown', 'onmouseenter', 'onmouseleave', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onmozfullscreenchange', 'onmozfullscreenerror', 'onpaste', 'onpause', 'onplay', 'onplaying', 'onpointercancel', 'onpointerdown', 'onpointerenter', 'onpointerleave', 'onpointermove', 'onpointerout', 'onpointerover', 'onpointerup', 'onprogress', 'onratechange', 'onreset', 'onresize', 'onscroll', 'onseeking', 'onselect', 'onselectstart', 'onstalled', 'onsubmit', 'onsuspend', 'ontimeupdate', 'ontoggle', 'ontransitioncancel', 'ontransitionend', 'ontransitionrun', 'ontransitionstart', 'onvolumechange', 'onwaiting', 'onwebkitanimationend', 'onwebkitanimationiteration' ,'onwebkitanimationstart', 'onwebkittransitionend', 'onwheel'];
     const purgeEventListeners = (purgeCallback) => {
         const modifiedListenerMap = new WeakMap();
@@ -299,38 +299,38 @@
         // }
         // Object.defineProperties(HTMLElement.prototype, accessModifiers);
     };
-    
+
     addCss(`
         body.tp-modal-open { overflow: auto !important }
     `);
-    
+
     if (false) {}
-    
+
     /*-------------*\
     | | chess.com | |
     \*-------------*/
-    
+
     else if (domain === 'chess.com') {
         addCss(`
         chess-board .hint[data-invalid], chess-board .capture-hint[data-invalid] { background-color: rgba(199, 66, 66, 0.56); }
         chess-board .piece[data-invalid] { filter: drop-shadow(5px 5px 0 red); }
         `),window.addEventListener("DOMContentLoaded",()=>{let _=null,e=setInterval(()=>{((_=document.querySelector("chess-board")||document.createElement("div")).querySelector(".piece.square-11")?.classList.contains("wr")||_.querySelector(".piece.square-11")?.classList.contains("br"))&&(clearInterval(e),setTimeout(()=>{t()},500))},100);function t(){let e=_.querySelector(".piece.square-11")?.classList.contains("wr")?"w":"b",t=["wp","wr","wn","wb","wq","wk","bp","br","bn","bb","bq","bk"],r=[[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],],i=[[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!1,!1,!1,!1,!1,!1,!1],[!1,!0,!0,!0,!0,!0,!0,!0],[!1,!0,!0,!0,!0,!0,!0,!0],],n=!1,l=null;function a(){let t=r,a=!1,s=!0;r=[[!1,!1,!1,!1,!1,!1,!1,!1]];let o=[];for(let u=1;u<=8;u++){let $=[!1];for(let c=1;c<=8;c++){let f=_.querySelector(".piece.square-"+c+u);f&&o.push({element:f,coordinate:{x:c,y:u}}),!!f!==t[u][c]&&(a=!0),!!f!==i[u][c]&&(s=!1),$.push(!!f)}r.push($)}if(a){for(let b of(s&&(e=(_=document.querySelector("chess-board")||document.createElement("div")).querySelector(".piece.square-11")?.classList.contains("wr")?"w":"b"),o)){let{team:x}=d(b.element);x===e&&y(b.coordinate)?b.element.setAttribute("data-invalid",!0):b.element.removeAttribute("data-invalid")}n=!0,clearTimeout(l),l=setTimeout(()=>{n=!1},400)}}function s(_,e,t){return 1===Math.abs(_.x-e.x)&&_.y+t===e.y}function o(_,e){if(_.x===e.x){if(_.y>e.y)for(let t=_.y-1;t>=1;t--){if(t===e.y)return!0;if(r[t][_.x])break}else if(_.y<e.y)for(let i=_.y+1;i<=8;i++){if(i===e.y)return!0;if(r[i][_.x])break}}else if(_.y===e.y){if(_.x>e.x)for(let n=_.x-1;n>=1;n--){if(n===e.x)return!0;if(r[_.y][n])break}else if(_.x<e.x)for(let l=_.x+1;l<=8;l++){if(l===e.x)return!0;if(r[_.y][l])break}}return!1}function u(_,e){return 1===Math.abs(_.x-e.x)&&2===Math.abs(_.y-e.y)||2===Math.abs(_.x-e.x)&&1===Math.abs(_.y-e.y)}function $(_,e){let t=_.x<e.x?1:-1,i=_.y<e.y?1:-1;for(let n=_.x+t,l=_.y+i;n>=1&&n<=8&&l>=1&&l<=8;){if(n===e.x&&l===e.y)return!0;if(r[l][n])break;n+=t,l+=i}return!1}function c(_,e){return o(_,e)||$(_,e)}function f(_,e){return!!(1>=Math.abs(_.x-e.x)&&1>=Math.abs(_.y-e.y))}function b(_){if(!_)return{x:0,y:0};{let e=_.className,t=e.indexOf("square-")+7,r=e.slice(t,t+2);return{x:parseInt(r[0],10),y:parseInt(r[1],10)}}}function d(_){let e="",r="";for(let i of _.classList)t.includes(i)&&(e=i[0],r=i[1]);return{team:e,type:r}}function y(t){let r=_.querySelectorAll(".piece");for(let i of r){let{team:n,type:l}=d(i),a=b(i);if(n!=e&&("p"===l&&s(a,t,n===e?1:-1)||"r"===l&&o(a,t)||"n"===l&&u(a,t)||"b"===l&&$(a,t)||"q"===l&&c(a,t)||"k"===l&&f(a,t)))return!0}return!1}let x=null,q=new MutationObserver((_,e)=>{clearTimeout(x),x=setTimeout(()=>{n?n=!1:a()},10)});q.observe(_,{attributes:!0,childList:!0,subtree:!0}),_.parentNode.addEventListener("click",()=>{setTimeout(()=>{let e=b(_.querySelector(".hover-square")),t=_.querySelectorAll(".hint, .capture-hint, .piece.square-"+e.x+e.y);for(let r of t){let i=b(r);!0===y(i)?r.setAttribute("data-invalid",!0):r.removeAttribute("data-invalid")}},1)}),a()}});
     }
-        
+
     /*------------------------*\
     | | docs.godotengine.org | |
     \*------------------------*/
-    
+
     else if (domain === 'godotengine.org') {
         if (location.href.startsWith('https://docs.godotengine.org/en/stable/')) {
             location.href = location.href.replace('/stable/', '/3.5/');
         }
     }
-    
+
     /*----------------*\
     | | facebook.com | |
     \*----------------*/
-    
+
     else if (domain === 'facebook.com') {
         if (window !== window.top) {
             return;
@@ -343,11 +343,11 @@
             document.documentElement.style.setProperty('--notification-badge', 'transparent');
         });
     }
-    
+
     /*----------------------*\
     | | factschronicle.com | |
     \*----------------------*/
-    
+
     else if (domain === 'factschronicle.com') {
         addCss('* { user-select: auto !important; } h1,h2,h3,h4,h5,h6,p { cursor: initial !important; }');
         const setAttribute = Element.prototype.setAttribute;
@@ -365,11 +365,11 @@
         Object.defineProperty(document, 'onkeydown', { configurable: false, value: null, writable: false });
         Object.defineProperty(document, 'onselectstart', { configurable: false, value: null, writable: false });
     }
-    
+
     /*----------------*\
     | | gogoanime.vc | |
     \*----------------*/
-    
+
     else if (domain.startsWith('gogoanime')) {
         const console = disableConsoleManipulation();
         addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
@@ -385,7 +385,7 @@
             });
         });
     }
-    
+
     else if (['fembed-hd.com', 'sbplay2.xyz', 'dood.ws'].includes(domain) || /(goload\.|gogoplay[0-9]{1,4}\.com)/.test(domain)) {
         const console = disableConsoleManipulation();
         purgeEventListeners((target, event, handler) => {
@@ -396,11 +396,11 @@
         addCss('html > body ~ div { display: none !important; pointer-events: none !important; }');
         blockAllPopups();
     }
-    
+
     /*--------------*\
     | | google.com | |
     \*--------------*/
-    
+
     else if (domain === 'google.com') {
         if (location.pathname.startsWith('/search')) {
             document.addEventListener('DOMContentLoaded', () => {
@@ -410,11 +410,11 @@
             });
         }
     }
-    
+
     /*-----------------*\
     | | instagram.com | |
     \*-----------------*/
-    
+
     else if (domain === 'instagram.com') {
         sessionStorage.setItem('loggedOutCTAIsShown', '1');
         // Remove popups prompting user to login, when it's not actually necessary.
@@ -439,11 +439,11 @@
             });
         });
     }
-    
+
     /*----------------*\
     | | mangahere.cc | |
     \*----------------*/
-    
+
     else if (domain === 'mangahere.cc') {
         const addEventListenerOriginal = EventTarget.prototype.addEventListener;
         EventTarget.prototype.addEventListener = function(type, listener) {
@@ -472,11 +472,11 @@
             return addEventListenerOriginal.apply(this, arguments);
         };
     }
-    
+
     /*-------------------*\
     | | mangakakalot.tv | |
     \*-------------------*/
-    
+
     else if (domain === 'mangakakalot.tv') {
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-src]').forEach((node) => {
@@ -485,11 +485,11 @@
             });
         });
     }
-    
+
     /*---------------*\
     | | netflix.com | |
     \*---------------*/
-    
+
     else if (domain === 'netflix.com') {
         window.MessageChannel = undefined;
         addCss(`
@@ -499,11 +499,11 @@
         .previewModal--info { transform: none !important; opacity: 1 !important; }
         `);
     }
-    
+
     /*---------------*\
     | | nhentai.com | |
     \*---------------*/
-    
+
     else if (domain === 'nhentai.net') {
         const styles = addCss(`.reader-buttons-right { display: none !important; } html.reader #image-container.fit-both { height: auto !important; } html.reader #image-container.fit-both img { max-height: none; width: 800px; }`);
         document.addEventListener('keydown', (e) => {
@@ -536,11 +536,11 @@
             });
         });
     }
-    
+
     /*--------------*\
     | | piximg.net | |
     \*--------------*/
-    
+
     else if (domain === 'pximg.net') {
         const download = parseQuery(window.location.search).download;
         if (download) {
@@ -550,11 +550,11 @@
             link.click();
         }
     }
-    
+
     /*-------------*\
     | | pixiv.net | |
     \*-------------*/
-    
+
     else if (domain === 'pixiv.net') {
         function createDownloadButton() {
             const zoomControls = document.querySelectorAll('.zoom-controls');
@@ -597,11 +597,11 @@
             createDownloadButton();
         });
     }
-    
+
     /*--------------*\
     | | reddit.com | |
     \*--------------*/
-    
+
     else if (domain === 'reddit.com') {
         disableAddCssRemoval();
         document.addEventListener('DOMContentLoaded', () => {
@@ -614,14 +614,14 @@
                 addCss(`.${screenReaderNode.parentNode.className} > :not([role="screen-reader"]) { display: none !important; }`);
                 addCss(`.${screenReaderNode.parentNode.className} .${node.querySelector('[role="screen-reader"]').className} { display: block !important; position: static !important; width: auto !important; height: auto !important; margin: 0 !important; }`);
             });
-            
+
         });
     }
-    
+
     /*--------------*\
     | | rule34.xxx | |
     \*--------------*/
-    
+
     else if (domain === 'rule34.xxx') {
         addCss(`#image { max-width: 100%; height: auto; } .thumb { width: 200px; height: 200px; } html,body,#content,#post-view,.content { overflow: visible !important; }`);
         document.addEventListener('DOMContentLoaded', () => {
@@ -637,11 +637,11 @@
             });
         });
     }
-    
+
     /*-------------------*\
     | | techlicious.com | |
     \*-------------------*/
-    
+
     else if (domain === 'techlicious.com') {
         Object.defineProperty(window, 'admrlWpJsonP', {
             configurable: false,
@@ -649,11 +649,11 @@
             value: null
         });
     }
-    
+
     /*---------------*\
     | | twitter.com | |
     \*---------------*/
-    
+
     else if (domain === 'twitter.com') {
         disableAddCssRemoval();
         blockInjectedNodes({
@@ -665,19 +665,19 @@
             addCss('html { overflow: unset !important; overscroll-behavior-y: unset !important; font-size: unset !important; margin-right: unset !important; }');
         });
     }
-    
+
     /*-------------*\
     | | vimeo.com | |
     \*-------------*/
-    
+
     else if (domain === 'vimeo.com') {
         disablePageviewAPI();
     }
-    
+
     /*---------------*\
     | | youtube.com | |
     \*---------------*/
-    
+
     else if (domain === 'youtube.com') {
         disablePageviewAPI();
         addCss(`
@@ -697,9 +697,9 @@
                 deleteAllIndexedDbDatabases()
             }, 2000);
         }
-        
+
         // Enforce high default quality settings
-        
+
         function selectQuality(qualityButton) {
             // click the settings button on the video
             qualityButton.click();
@@ -714,7 +714,7 @@
                 break;
             }
         }
-        
+
         qualityButton = document.querySelector('.ytp-settings-button');
         if ((qualityButton !== null) && (qualityButton !== undefined)) {
             console.log('[YT MAX QUALITY] Found quality button without watching for mutations, excellent news.');
@@ -746,5 +746,5 @@
             });
         }
     }
-    
+
 })();
