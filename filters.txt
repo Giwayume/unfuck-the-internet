@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.25
+! Version: 1.0.26
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -76,6 +76,7 @@ bbcnews.com##.tp-modal-open:style(overflow: auto !important;)
 cjponyparts.com##.modals-overlay
 cjponyparts.com##.modals-wrapper
 dailywire.com##.ub-emb-container
+discord.com##div[class*="sidebar_"]>section[class*="panels_"]>div[class*="mask_"]
 facebook.com##a[href="/"]
 fixedbyvonnie.com##.tdarkoverlay
 fixedbyvonnie.com##.tbrightcontent
