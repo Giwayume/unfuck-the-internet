@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.26
+! Version: 1.0.27
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -182,6 +182,7 @@ m.youtube.com##ytm-promoted-video-renderer
 m.youtube.com##ytd-rich-item-renderer:has(ytd-display-ad-renderer)
 m.youtube.com##ytd-statement-banner-renderer
 m.youtube.com##ytm-promoted-video-renderer
+m.youtube.com##ytm-item-section-render:has(ad-slot-renderer)
 vidlii.com##.abb_parent
 
 no-popups: gogoplay4.com true
