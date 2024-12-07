@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.64
+// @version      1.0.65
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -698,10 +698,14 @@
     else if (domain === 'youtube.com') {
         disablePageviewAPI();
         addCss(`
-        ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
-        .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
-        .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
-        .yt-mealbar-promo-renderer-content { display: none !important; }
+            ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
+            ytd-rich-item-renderer, .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
+            .ytd-rich-item-renderer:has(> ytd-ad-slot-renderer) { display: none !important; }
+            .yt-mealbar-promo-renderer-content { display: none !important; }
+            ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]) { display: none !important; }
+            ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[has-paygated-featured-badge]) { display: none !important; }
+            ytd-rich-section-renderer:has(ytd-mini-game-card-view-model) { display: none !important; }
+            ytd-rich-section-renderer:has(ytd-brand-video-shelf-renderer) { display: none !important; }
         `);
 
         const isMobile = window.location.host.includes('m.youtube.com');
