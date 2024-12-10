@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.65
+// @version      1.0.66
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -422,7 +422,10 @@
     \*--------------*/
 
     else if (domain === 'google.com') {
-        if (location.pathname.startsWith('/search')) {
+        if (location.hostname === 'workspace.google.com') {
+            window.location = 'https://mail.google.com';
+        }
+        else if (location.pathname.startsWith('/search')) {
             document.addEventListener('DOMContentLoaded', () => {
                 document.querySelectorAll('a[href]').forEach((link) => {
                     link.removeAttribute('onmousedown');
