@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.68
+// @version      1.0.69
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -331,6 +331,22 @@
         addCss(`
             #app-mount > :not([class^="appAsidePanelWrapper_"]) { display: none !important; position: absolute !important; pointer-events: none !important; top: 0 !important; width: 0 !important; left: 0 !important; }
         `);
+        let isCheckingAsidePanelAlignment = true;
+        function checkAsidePanelAlignment() {
+            if (!isCheckingAsidePanelAlignment) return;
+            const asidePanelWrapper = document.querySelector('div[class^="appAsidePanelWrapper_"]');
+            const boundingRect = asidePanelWrapper?.getBoundingClientRect();
+            if (boundingRect?.x ?? 0 < 0) {
+                clearInterval(intervalHandle);
+                asidePanelWrapper.style.transform = 'translateX(' + (-boundingRect.x) + 'px)';
+                isCheckingAsidePanelAlignment = false;
+            }
+            requestAnimationFrame(checkAsidePanelAlignment);
+        });
+        checkAsidePanelAlignment();
+        setTimeout(() => {
+            isCheckingAsidePanelAlignment = false;
+        }, 5000);
     }
 
     /* -------------*\
