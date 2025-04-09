@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.69
+// @version      1.0.70
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -342,7 +342,7 @@
                 isCheckingAsidePanelAlignment = false;
             }
             requestAnimationFrame(checkAsidePanelAlignment);
-        });
+        };
         checkAsidePanelAlignment();
         setTimeout(() => {
             isCheckingAsidePanelAlignment = false;
