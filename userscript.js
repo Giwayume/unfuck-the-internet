@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.74
+// @version      1.0.75
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -163,7 +163,7 @@
         let isScriptPausingEnabled = false;
         let originalVideoPause = HTMLVideoElement.prototype.pause;
         HTMLVideoElement.prototype.pause = function() {
-            if (!isScriptPausingEnabled) return;
+            if (!navigator.userActivation.isActive && !isScriptPausingEnabled) return;
         	return originalVideoPause.apply(this, arguments);
         }
         function setScriptVideoPausingEnabled(value) {
@@ -869,15 +869,22 @@
         // Youtube shows some advertisement overlays which are coded to pause the video when they display.
         if (isMobile) {
             setScriptVideoPausingEnabled(false);
-            let touchStartDisablePausingTimeoutHandle = 0;
+            // let touchStartDisablePausingTimeoutHandle = 0;
+
+            // function disableScriptPausingForAFewSeconds() {
+                
+            // }
             
-            window.addEventListener('touchstart', (event) => {
-                setScriptVideoPausingEnabled(true);
-                clearTimeout(touchStartDisablePausingTimeoutHandle);
-            	touchStartDisablePausingTimeoutHandle = setTimeout(() => {
-                    setScriptVideoPausingEnabled(false);
-                }, 200);
-            }, true);
+            // onHistoryChange(() => {
+            //     touchStartDisablePausingTimeoutHandle = setTimeout();
+            // });
+            // window.addEventListener('touchstart', (event) => {
+            //     setScriptVideoPausingEnabled(true);
+            //     clearTimeout(touchStartDisablePausingTimeoutHandle);
+            // 	touchStartDisablePausingTimeoutHandle = setTimeout(() => {
+            //         setScriptVideoPausingEnabled(false);
+            //     }, 200);
+            // }, true);
         }
     }
 }());
