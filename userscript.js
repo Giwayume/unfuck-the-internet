@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.73
+// @version      1.0.74
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -740,6 +740,7 @@
     else if (domain === 'youtube.com') {
         disablePageviewAPI();
         const { setScriptVideoPausingEnabled } = disableScriptVideoPausing();
+        setScriptVideoPausingEnabled(true);
         addCss(`
             ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
             ytd-rich-item-renderer, .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
@@ -864,36 +865,19 @@
             });
         }
 
-        // Some overlays pause the video, unpause.
-        // if (isMobile) {
-        //     let lastTouchEventTime = 0;
+        // Disable scripts on the page from pausing the video unless there was a recent touch event.
+        // Youtube shows some advertisement overlays which are coded to pause the video when they display.
+        if (isMobile) {
+            setScriptVideoPausingEnabled(false);
+            let touchStartDisablePausingTimeoutHandle = 0;
             
-        //     window.addEventListener('touchend', (event) => {
-        //     	lastTouchEventTime = window.performance.now();
-        //     });
-            
-        //     onHistoryChange(async () => {
-        //     	let video;
-        //         await waitFor(() => {
-        //     		video = document.querySelector('.video-stream.html5-main-video');
-        //     		return video != null;
-        //     	}, 2000);
-        //     	if (!video) return;
-            	
-        //     	let hasAnnoyingOverlay = false;
-        //     	await waitFor(() => {
-        //     		if (document.querySelector('.YtmBottomSheetOverlayRendererOverlayContainer')) {
-        //     			hasAnnoyingOverlay = true;
-        //     		}
-        //     		return hasAnnoyingOverlay;
-        //     	}, 500);
-            	
-        //     	if (hasAnnoyingOverlay && video.paused) {
-        //     		if (window.performance.now() - lastTouchEventTime > 500) {
-        //     			video.play();
-        //     		}
-        //     	}
-        //     });
-        // }
+            window.addEventListener('touchstart', (event) => {
+                setScriptVideoPausingEnabled(true);
+                clearTimeout(touchStartDisablePausingTimeoutHandle);
+            	touchStartDisablePausingTimeoutHandle = setTimeout(() => {
+                    setScriptVideoPausingEnabled(false);
+                }, 200);
+            }, true);
+        }
     }
 }());
