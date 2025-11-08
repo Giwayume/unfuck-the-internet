@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.75
+// @version      1.0.76
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -163,6 +163,7 @@
         let isScriptPausingEnabled = false;
         let originalVideoPause = HTMLVideoElement.prototype.pause;
         HTMLVideoElement.prototype.pause = function() {
+            console.trace();
             if (!navigator.userActivation.isActive && !isScriptPausingEnabled) return;
         	return originalVideoPause.apply(this, arguments);
         }
@@ -869,22 +870,6 @@
         // Youtube shows some advertisement overlays which are coded to pause the video when they display.
         if (isMobile) {
             setScriptVideoPausingEnabled(false);
-            // let touchStartDisablePausingTimeoutHandle = 0;
-
-            // function disableScriptPausingForAFewSeconds() {
-                
-            // }
-            
-            // onHistoryChange(() => {
-            //     touchStartDisablePausingTimeoutHandle = setTimeout();
-            // });
-            // window.addEventListener('touchstart', (event) => {
-            //     setScriptVideoPausingEnabled(true);
-            //     clearTimeout(touchStartDisablePausingTimeoutHandle);
-            // 	touchStartDisablePausingTimeoutHandle = setTimeout(() => {
-            //         setScriptVideoPausingEnabled(false);
-            //     }, 200);
-            // }, true);
         }
     }
 }());
