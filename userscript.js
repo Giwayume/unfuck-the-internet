@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.72
+// @version      1.0.73
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -157,6 +157,19 @@
             enumerable: true,
             configurable: true,
         });
+    };
+
+    const disableScriptVideoPausing = () => {
+        let isScriptPausingEnabled = false;
+        let originalVideoPause = HTMLVideoElement.prototype.pause;
+        HTMLVideoElement.prototype.pause = function() {
+            if (!isScriptPausingEnabled) return;
+        	return originalVideoPause.apply(this, arguments);
+        }
+        function setScriptVideoPausingEnabled(value) {
+            isScriptPausingEnabled = value;
+        }
+        return { setScriptVideoPausingEnabled };
     };
 
     const blockAllPopups = () => {
@@ -726,6 +739,7 @@
 
     else if (domain === 'youtube.com') {
         disablePageviewAPI();
+        const { setScriptVideoPausingEnabled } = disableScriptVideoPausing();
         addCss(`
             ytd-rich-grid-row, .ytd-rich-grid-row { display: contents !important; max-width: none !important; }
             ytd-rich-item-renderer, .ytd-rich-item-renderer, #content.ytd-rich-item-renderer { display: content !important; flex-grow: 1 !important; width: 300px !important; margin: 5px !important; flex-shrink: 1 !important; }
@@ -851,35 +865,35 @@
         }
 
         // Some overlays pause the video, unpause.
-        if (isMobile) {
-            let lastTouchEventTime = 0;
+        // if (isMobile) {
+        //     let lastTouchEventTime = 0;
             
-            window.addEventListener('touchend', (event) => {
-            	lastTouchEventTime = window.performance.now();
-            });
+        //     window.addEventListener('touchend', (event) => {
+        //     	lastTouchEventTime = window.performance.now();
+        //     });
             
-            onHistoryChange(async () => {
-            	let video;
-                await waitFor(() => {
-            		video = document.querySelector('.video-stream.html5-main-video');
-            		return video != null;
-            	}, 2000);
-            	if (!video) return;
+        //     onHistoryChange(async () => {
+        //     	let video;
+        //         await waitFor(() => {
+        //     		video = document.querySelector('.video-stream.html5-main-video');
+        //     		return video != null;
+        //     	}, 2000);
+        //     	if (!video) return;
             	
-            	let hasAnnoyingOverlay = false;
-            	await waitFor(() => {
-            		if (document.querySelector('.YtmBottomSheetOverlayRendererOverlayContainer')) {
-            			hasAnnoyingOverlay = true;
-            		}
-            		return hasAnnoyingOverlay;
-            	}, 500);
+        //     	let hasAnnoyingOverlay = false;
+        //     	await waitFor(() => {
+        //     		if (document.querySelector('.YtmBottomSheetOverlayRendererOverlayContainer')) {
+        //     			hasAnnoyingOverlay = true;
+        //     		}
+        //     		return hasAnnoyingOverlay;
+        //     	}, 500);
             	
-            	if (hasAnnoyingOverlay && video.paused) {
-            		if (window.performance.now() - lastTouchEventTime > 500) {
-            			video.play();
-            		}
-            	}
-            });
-        }
+        //     	if (hasAnnoyingOverlay && video.paused) {
+        //     		if (window.performance.now() - lastTouchEventTime > 500) {
+        //     			video.play();
+        //     		}
+        //     	}
+        //     });
+        // }
     }
 }());
