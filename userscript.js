@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.71
+// @version      1.0.72
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -847,6 +847,38 @@
             observer.observe(document, {
                 childList: true,
                 subtree: true,
+            });
+        }
+
+        // Some overlays pause the video, unpause.
+        if (isMobile) {
+            let lastTouchEventTime = 0;
+            
+            window.addEventListener('touchend', (event) => {
+            	lastTouchEventTime = window.performance.now();
+            });
+            
+            onHistoryChange(async () => {
+            	let video;
+                await waitFor(() => {
+            		video = document.querySelector('.video-stream.html5-main-video');
+            		return video != null;
+            	}, 2000);
+            	if (!video) return;
+            	
+            	let hasAnnoyingOverlay = false;
+            	await waitFor(() => {
+            		if (document.querySelector('.YtmBottomSheetOverlayRendererOverlayContainer')) {
+            			hasAnnoyingOverlay = true;
+            		}
+            		return hasAnnoyingOverlay;
+            	}, 500);
+            	
+            	if (hasAnnoyingOverlay && video.paused) {
+            		if (window.performance.now() - lastTouchEventTime > 500) {
+            			video.play();
+            		}
+            	}
             });
         }
     }
