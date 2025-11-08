@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.76
+// @version      1.0.77
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -753,6 +753,8 @@
             ytd-rich-section-renderer:has(ytd-brand-video-shelf-renderer) { display: none !important; }
             .ytd-statement-banner-renderer { display: none !important }
             ytd-tvfilm-offer-module-renderer { display: none !important }
+            .ytWebScrimHost.ytWebScrimHostModernOverlay { display: none !important }
+            .YtmBottomSheetOverlayRendererOverlayContainer { display: none !important }
         `);
 
         const isMobile = window.location.host.includes('m.youtube.com');
