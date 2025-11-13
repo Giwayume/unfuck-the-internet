@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.79
+// @version      1.0.80
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -867,10 +867,21 @@
             });
         }
 
-        // Disable scripts on the page from pausing the video unless there was a recent touch event.
+        // Disable scripts on the page from pausing the video.
         // Youtube shows some advertisement overlays which are coded to pause the video when they display.
         if (isMobile) {
             setScriptVideoPausingEnabled(false);
+
+            document.addEventListener('click', (event) => {
+                if (event.target.closest('.icon-button.player-control-play-pause-icon')) {
+                    const video = document.querySelector('.video-stream.html5-main-video');
+                    if (!video.paused) {
+                        setScriptVideoPausingEnabled(true);
+                        video.pause();
+                        setScriptVideoPausingEnabled(false);
+                    }
+                }
+            }, true);
         }
 
         function purgeVideoPausedDialogs() {
