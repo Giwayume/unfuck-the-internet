@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.78
+// @version      1.0.79
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -163,8 +163,7 @@
         let isScriptPausingEnabled = false;
         let originalVideoPause = HTMLVideoElement.prototype.pause;
         HTMLVideoElement.prototype.pause = function() {
-            console.trace();
-            if (!navigator.userActivation.isActive && !isScriptPausingEnabled) return;
+            if (!isScriptPausingEnabled) return;
         	return originalVideoPause.apply(this, arguments);
         }
         function setScriptVideoPausingEnabled(value) {
@@ -876,7 +875,7 @@
 
         function purgeVideoPausedDialogs() {
             const dialogContainer = document.getElementById('dialog-container');
-            dialogContainer.querySelectorAll('dialog').forEach((dialog) => {
+            dialogContainer?.querySelectorAll('dialog')?.forEach((dialog) => {
                 if (dialog.textContent.includes('Video paused. Continue watching?')) dialog.remove();
             });
         }
