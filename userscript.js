@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.80
+// @version      1.0.81
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -336,32 +336,6 @@
 
     if (false) { }
 
-    /*---------------*\
-    | | discord.com | |
-    \*---------------*/
-
-    else if (domain === 'discord.com') {
-        addCss(`
-            #app-mount > :not([class^="appAsidePanelWrapper_"]) { display: none !important; position: absolute !important; pointer-events: none !important; top: 0 !important; width: 0 !important; left: 0 !important; }
-        `);
-        let isCheckingAsidePanelAlignment = true;
-        function checkAsidePanelAlignment() {
-            if (!isCheckingAsidePanelAlignment) return;
-            const asidePanelWrapper = document.querySelector('div[class^="appAsidePanelWrapper_"]');
-            const boundingRect = asidePanelWrapper?.getBoundingClientRect();
-            if (boundingRect?.x ?? 0 < 0) {
-                clearInterval(intervalHandle);
-                asidePanelWrapper.style.transform = 'translateX(' + (-boundingRect.x) + 'px)';
-                isCheckingAsidePanelAlignment = false;
-            }
-            requestAnimationFrame(checkAsidePanelAlignment);
-        };
-        checkAsidePanelAlignment();
-        setTimeout(() => {
-            isCheckingAsidePanelAlignment = false;
-        }, 5000);
-    }
-
     /* -------------*\
     | | chess.com | |
     \*-------------*/
@@ -376,6 +350,32 @@
                     l = null; function a() { const t = r; let a = !1; let s = !0; r = [[!1, !1, !1, !1, !1, !1, !1, !1]]; const o = []; for (let u = 1; u <= 8; u++) { const $ = [!1]; for (let c = 1; c <= 8; c++) { const f = _.querySelector(`.piece.square-${c}${u}`); f && o.push({ element: f, coordinate: { x: c, y: u } }), !!f !== t[u][c] && (a = !0), !!f !== i[u][c] && (s = !1), $.push(!!f); } r.push($); } if (a) { for (const b of (s && (e = (_ = document.querySelector('chess-board') || document.createElement('div')).querySelector('.piece.square-11')?.classList.contains('wr') ? 'w' : 'b'), o)) { const { team: x } = d(b.element); x === e && y(b.coordinate) ? b.element.setAttribute('data-invalid', !0) : b.element.removeAttribute('data-invalid'); } n = !0, clearTimeout(l), l = setTimeout(() => { n = !1; }, 400); } } function s(_, e, t) { return Math.abs(_.x - e.x) === 1 && _.y + t === e.y; } function o(_, e) { if (_.x === e.x) { if (_.y > e.y) for (let t = _.y - 1; t >= 1; t--) { if (t === e.y) return !0; if (r[t][_.x]) break; } else if (_.y < e.y) for (let i = _.y + 1; i <= 8; i++) { if (i === e.y) return !0; if (r[i][_.x]) break; } } else if (_.y === e.y) { if (_.x > e.x) for (let n = _.x - 1; n >= 1; n--) { if (n === e.x) return !0; if (r[_.y][n]) break; } else if (_.x < e.x) for (let l = _.x + 1; l <= 8; l++) { if (l === e.x) return !0; if (r[_.y][l]) break; } } return !1; } function u(_, e) { return Math.abs(_.x - e.x) === 1 && Math.abs(_.y - e.y) === 2 || Math.abs(_.x - e.x) === 2 && Math.abs(_.y - e.y) === 1; } function $(_, e) { const t = _.x < e.x ? 1 : -1; const i = _.y < e.y ? 1 : -1; for (let n = _.x + t, l = _.y + i; n >= 1 && n <= 8 && l >= 1 && l <= 8;) { if (n === e.x && l === e.y) return !0; if (r[l][n]) break; n += t, l += i; } return !1; } function c(_, e) { return o(_, e) || $(_, e); } function f(_, e) { return !!(Math.abs(_.x - e.x) <= 1 && Math.abs(_.y - e.y) <= 1); } function b(_) { if (!_) return { x: 0, y: 0 }; { const e = _.className; const t = e.indexOf('square-') + 7; const r = e.slice(t, t + 2); return { x: parseInt(r[0], 10), y: parseInt(r[1], 10) }; } } function d(_) { let e = ''; let r = ''; for (const i of _.classList) t.includes(i) && (e = i[0], r = i[1]); return { team: e, type: r }; } function y(t) { const r = _.querySelectorAll('.piece'); for (const i of r) { const { team: n, type: l } = d(i); const a = b(i); if (n != e && (l === 'p' && s(a, t, n === e ? 1 : -1) || l === 'r' && o(a, t) || l === 'n' && u(a, t) || l === 'b' && $(a, t) || l === 'q' && c(a, t) || l === 'k' && f(a, t))) return !0; } return !1; } let x = null; const q = new MutationObserver((_, e) => { clearTimeout(x), x = setTimeout(() => { n ? n = !1 : a(); }, 10); }); q.observe(_, { attributes: !0, childList: !0, subtree: !0 }), _.parentNode.addEventListener('click', () => { setTimeout(() => { const e = b(_.querySelector('.hover-square')); const t = _.querySelectorAll(`.hint, .capture-hint, .piece.square-${e.x}${e.y}`); for (const r of t) { const i = b(r); !0 === y(i) ? r.setAttribute('data-invalid', !0) : r.removeAttribute('data-invalid'); } }, 1); }), a();
             }
         });
+    }
+
+    /*---------------*\
+    | | discord.com | |
+    \*---------------*/
+
+    else if (domain === 'discord.com') {
+        // addCss(`
+        //     #app-mount > :not([class^="appAsidePanelWrapper_"]) { display: none !important; position: absolute !important; pointer-events: none !important; top: 0 !important; width: 0 !important; left: 0 !important; }
+        // `);
+        // let isCheckingAsidePanelAlignment = true;
+        // function checkAsidePanelAlignment() {
+        //     if (!isCheckingAsidePanelAlignment) return;
+        //     const asidePanelWrapper = document.querySelector('div[class^="appAsidePanelWrapper_"]');
+        //     const boundingRect = asidePanelWrapper?.getBoundingClientRect();
+        //     if (boundingRect?.x ?? 0 < 0) {
+        //         clearInterval(intervalHandle);
+        //         asidePanelWrapper.style.transform = 'translateX(' + (-boundingRect.x) + 'px)';
+        //         isCheckingAsidePanelAlignment = false;
+        //     }
+        //     requestAnimationFrame(checkAsidePanelAlignment);
+        // };
+        // checkAsidePanelAlignment();
+        // setTimeout(() => {
+        //     isCheckingAsidePanelAlignment = false;
+        // }, 5000);
     }
 
     /* ------------------------*\
