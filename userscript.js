@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.81
+// @version      1.0.82
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -357,6 +357,9 @@
     \*---------------*/
 
     else if (domain === 'discord.com') {
+        addCss(`
+            div[class*="wrapperVisible"]:has([class*="contentWrapper"] [class*="rewardHighlightWrapper"]) { display: none !important; }
+        `);
         // addCss(`
         //     #app-mount > :not([class^="appAsidePanelWrapper_"]) { display: none !important; position: absolute !important; pointer-events: none !important; top: 0 !important; width: 0 !important; left: 0 !important; }
         // `);
