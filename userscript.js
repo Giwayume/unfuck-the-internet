@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.82
+// @version      1.0.83
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -716,16 +716,8 @@
     | | twitter.com | |
     \*---------------*/
 
-    else if (domain === 'twitter.com') {
-        disableAddCssRemoval();
-        blockInjectedNodes({
-            blockContent: ['See more Tweets from'],
-        });
-        document.addEventListener('DOMContentLoaded', () => {
-            addCss('[data-testid="BottomBar"] { display: none !important; }');
-            addCss('iframe[title*="Sign in with Google Dialog"] { display: none !important; }');
-            addCss('html { overflow: unset !important; overscroll-behavior-y: unset !important; font-size: unset !important; margin-right: unset !important; }');
-        });
+    else if (domain === 'twitter.com' || domain === 'x.com') {
+        window.location.href = 'https://nitter.privacyredirect.com' + window.location.pathname;
     }
 
     /* -------------*\
