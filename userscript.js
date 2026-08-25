@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.83
+// @version      1.0.84
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -717,7 +717,7 @@
     \*---------------*/
 
     else if (domain === 'twitter.com' || domain === 'x.com') {
-        window.location.href = 'https://nitter.privacyredirect.com' + window.location.pathname;
+        window.location.href = 'https://xcancel.com' + window.location.pathname;
     }
 
     /* -------------*\
