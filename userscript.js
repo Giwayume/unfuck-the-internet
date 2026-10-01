@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Unfuck the Internet
 // @namespace    Unfuck the Internet
-// @version      1.0.85
+// @version      1.0.86
 // @description  Fixes annoying things about various websites on the internet
 // @author       Giwayume
 // @match        *://*/*
@@ -717,7 +717,39 @@
     \*---------------*/
 
     else if (domain === 'twitter.com' || domain === 'x.com') {
-        window.location.href = 'https://xcancel.com' + window.location.pathname;
+        window.addEventListener = null;
+        (() => {
+            const removeInert = (root = document) => {
+                if (root.nodeType === Node.ELEMENT_NODE && root.hasAttribute("inert")) {
+                    root.removeAttribute("inert");
+                }
+
+                root.querySelectorAll?.("[inert]").forEach((element) => {
+                    element.removeAttribute("inert");
+                });
+            };
+
+            // Remove existing inert attributes.
+            removeInert();
+
+            // Remove inert attributes added or reapplied in the future.
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === "attributes") {
+                        mutation.target.removeAttribute("inert");
+                    } else if (mutation.type === "childList") {
+                        mutation.addedNodes.forEach(removeInert);
+                    }
+                }
+            });
+
+            observer.observe(document.documentElement, {
+                subtree: true,
+                childList: true,
+                attributes: true,
+                attributeFilter: ["inert"]
+            });
+        })();
     }
 
     /* -------------*\
