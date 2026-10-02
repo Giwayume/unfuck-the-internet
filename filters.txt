@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Unfuck the Internet
 ! Author: Giwayume
-! Version: 1.0.32
+! Version: 1.0.33
 ! Expires: 1 days
 ! License: GNU GENERAL PUBLIC LICENSE VER 3
 ! Homepage: https://github.com/Giwayume/unfuck-the-internet/
@@ -70,7 +70,7 @@ x.com##[class*="group/carousel"] .flex.scrollbar-hide .h-full:style(height: auto
 x.com##[class*="group/carousel"] .flex.scrollbar-hide img:style(object-fit: none !important; height: auto !important;)
 x.com##.absolute:has([class*="group/carousel"]):style(position: relative !important;)
 x.com##.relative.h-0:has([class*="group/carousel"]):style(height: auto !important; padding-bottom: 0 !important;)
-x.com##[class*="group/carousel"] [aria-label="View media"]
+x.com##a[aria-label="View media"]
 x.com##[data-interaction="app-store-obstruction"]
 x.com##main>relative.h-full:style(overflow: auto !important;)
 x.com##.rtl\:origin-bottom-left.motion-safe\:focus-visible\:scale-\[1\.08\].motion-safe\:hover\:scale-\[1\.08\].focus-visible\:ring-gray-700.focus-visible\:ring-2.ease-out.duration-200.transition-transform.outline-hidden.p-4.border.rounded.gap-2.items-center.flex-col.cursor-pointer.origin-bottom-right.flex.z-1000.bottom-\[3vw\].inset-e-\[3vw\].fixed.motion-reduce\:animate-enter-fade.motion-safe\:animate-enter-fade-rise.bg-modal.shadow-popup.border-normal
